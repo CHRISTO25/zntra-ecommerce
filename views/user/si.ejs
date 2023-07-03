@@ -1,0 +1,55 @@
+<%-include('../layouts/header')-%>
+
+<div class="container signup">
+    <div class="row">
+        <div class="col-lg-5  col-md-6 col-12 sign-img">
+            <div>
+                <img src="static/images/bag.jpg">
+            </div>  
+        </div>
+        <div class="col-lg-7 col-md-6 col-12 signup-form"> 
+            <div>
+                <h4>signup</h4>
+          <form action="" method="post">
+            <input type="text" name='name' placeholder="Enter Your Name" id = "fname" required/><br>
+        
+            <input type="tel" pattern='^\d{11,13}$'  name='number' title='(Numbers only, inc. area code)' placeholder="Enter Your Number"  required/><br>
+
+             <input type="text" name='username' placeholder="Enter Userame" required/><br>
+       
+            <input type="email" name='email' placeholder="Enter Your Email"  required /><br>
+
+            <input type="password" name='pass' placeholder="Enter Password" id="password" required/><br>
+            
+
+            <input type="password" name='conf_pass' placeholder="Confirm Password" id="confirm_password" required/><br>
+
+            <script>
+                var password = document.getElementById("password")
+                 , confirm_password = document.getElementById("confirm_password");
+
+                function validatePassword(){
+                 if(password.value != confirm_password.value) {
+                 confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+              confirm_password.setCustomValidity('');
+                 }
+               }
+
+              password.onchange = validatePassword;
+              confirm_password.onkeyup = validatePassword;
+            </script>
+            
+
+            <h4> <a href="/signin">Already have an Account ?</a> </h4>
+
+            
+            <button type="submit" class='app__submit'>Sign up</button>
+            
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-include('../layouts/footer')-%>
