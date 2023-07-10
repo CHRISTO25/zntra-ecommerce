@@ -17,6 +17,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/theme/favicon.svg">
     <!-- Template CSS -->
     <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* Add some CSS for colorful inputs */
+        .colorful-input {
+          background-color: #f3f3f3;
+          border: none;
+          border-radius: 5px;
+          padding: 10px;
+          margin-bottom: 10px;
+          box-shadow: none;
+        }
+      </style>
 </head>
 
 <body>
@@ -69,18 +80,59 @@
             <div class="card mx-auto card-login">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Sign in</h4>
-                    <form action="/adminlogin" method="post">
+                    <form action="/adminlogin" method="post" id="loginForm">
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Username or email" type="email" name="name">
-                        </div> <!-- form-group// -->
+                          <input class="form-control" placeholder="Username or email" type="email" name="name" id="emailInput">
+                        </div>
+                        <!-- form-group// -->
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Password" type="password" name="pass">
-                        </div> <!-- form-group// -->
-                    
+                          <input class="form-control" placeholder="Password" type="password" name="pass" id="passwordInput">
+                        </div>
+                        <div class="mb-3">
+                          <p style="color: red;"><%=message%></p>
+                        </div>
+                        <!-- form-group// -->
                         <div class="mb-4">
-                            <button type="submit" class="btn btn-primary w-100"> Login </button>
-                        </div> <!-- form-group// -->
-                    </form>
+                          <button type="submit" class="btn btn-primary w-100"> Login </button>
+                        </div>
+                        <!-- form-group// -->
+                      </form>
+                      
+                      <!-- Include SweetAlert library -->
+                      <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+                      
+                      <script>
+                        // Validate form inputs
+                        document.getElementById('loginForm').addEventListener('submit', function(event) {
+                          event.preventDefault(); // Prevent form submission
+                      
+                          var email = document.getElementById('emailInput').value;
+                          var password = document.getElementById('passwordInput').value;
+                      
+                          // Perform validation
+                          if (email.trim() === '' || password.trim() === '') {
+                            // Show SweetAlert error message
+                            swal("Error", "Please enter both email and password", "error");
+                          } else {
+                            // Submit the form
+                            this.submit();
+                          }
+                        });
+                      
+                        // Make the form colorful
+                        document.addEventListener('DOMContentLoaded', function() {
+                          var form = document.getElementById('loginForm');
+                          var formElements = form.elements;
+                      
+                          // Loop through form elements and add color
+                          for (var i = 0; i < formElements.length; i++) {
+                            var element = formElements[i];
+                            if (element.type !== 'submit') {
+                              element.classList.add('colorful-input');
+                            }
+                          }
+                        });
+                      </script>
                    
                
                 </div>
@@ -95,6 +147,7 @@
             <p class="font-xs mb-30">All rights reserved</p>
         </footer>
     </main>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="static/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
     <script src="static/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
     <script src="static/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>

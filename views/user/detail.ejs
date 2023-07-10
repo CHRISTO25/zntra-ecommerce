@@ -2,65 +2,77 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description"
-		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/" />
 
 	<!-- title -->
 	<title>Single Product</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="static/usr/assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="static/usr/assets/img/favicon.png" />
 	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="static/usr/assets/css/all.min.css">
+	<link rel="stylesheet" href="static/usr/assets/css/all.min.css" />
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="static/usr/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/usr/assets/bootstrap/css/bootstrap.min.css" />
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="static/usr/assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="static/usr/assets/css/owl.carousel.css" />
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="static/usr/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="static/usr/assets/css/magnific-popup.css" />
 	<!-- animate css -->
-	<link rel="stylesheet" href="static/usr/assets/css/animate.css">
+	<link rel="stylesheet" href="static/usr/assets/css/animate.css" />
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="static/usr/assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="static/usr/assets/css/meanmenu.min.css" />
 	<!-- main style -->
-	<link rel="stylesheet" href="static/usr/assets/css/main.css">
+	<link rel="stylesheet" href="static/usr/assets/css/main.css" />
 	<!-- responsive -->
-	<link rel="stylesheet" href="static/usr/assets/css/responsive.css">
+	<link rel="stylesheet" href="static/usr/assets/css/responsive.css" />
+
 	<style>
-		#img-zoomer-box {
-			max-width: 500px;
-			height: auto;
+		.input-group {
 			position: relative;
-			margin: 10px auto;
-		}
-
-		#img-1 {
+			display: inline-flex;
+			align-items: center;
 			width: 100%;
-			height: auto;
+			max-width: 100px;
+			border: 1px solid #ced4da;
+			border-radius: 5px;
+			overflow: hidden;
 		}
 
-		#img-zoomer-box:hover,
-		#img-zoomer-box:active {
-			cursor: zoom-in;
-			display: block;
+		.input-group-btn button {
+			background-color: #f8f9fa;
+			color: #343a40;
+			border: none;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+			padding: 0.375rem 0.75rem;
 		}
 
-		#img-zoomer-box:hover #img-2,
-		#img-zoomer-box:active #img-2 {
-			opacity: 1;
+		.input-group-btn button:hover {
+			background-color: #e9ecef;
+		}
+
+		.form-control {
+			border: none;
+			text-align: center;
+			padding: 0.375rem 0.75rem;
+			width: 100%;
+			background-color: transparent;
+		}
+
+		.kg-symbol::after {
+			content: "kg";
 		}
 	</style>
-
 </head>
 
 <body>
-
 	<!--PreLoader-->
 	<div class="loader">
 		<div class="loader-inner">
@@ -78,7 +90,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="/home">
-								<img src="static/usr/assets/img/logo.png" alt="">
+								<h5><span class="orange-text">NutriFreshFruit</span></h5>
 							</a>
 						</div>
 						<!-- logo -->
@@ -86,51 +98,33 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="/home">Home</a>
+								<li class="current-list-item"><a href="/home">Home</a></li>
+
+								<li>
+									<a href="/shop">Shop</a>
 									<ul class="sub-menu">
-										<!-- <li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li> -->
+									  <li><a href="/shop">Shop</a></li>
+									  <li><a href="/category">category</a></li>
+									  <li><a href="/cart">Cart</a></li>
+									  <li><a href="/coupon">Coupons</a></li>
+									  <li><a href="/myOrder">my orders</a></li>
 									</ul>
-								</li>
-								<li><a href="a#">About</a></li>
-								<li><a href="#">Pages</a>
-									<ul class="sub-menu">
-										<!-- <li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li> -->
-									</ul>
-								</li>
-								<li><a href="#">News</a>
-									<ul class="sub-menu">
-										<!-- <li><a href="news.html">News</a></li>
-										<li><a href="single-news.html">Single News</a></li> -->
-									</ul>
-								</li>
-								<li><a href="#">Contact</a></li>
-								<li><a href="#">Shop</a>
-									<ul class="sub-menu">
-										<!-- <li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li> -->
-									</ul>
+								  </li>
+								<li>
+									<div class="profile-logo" style="margin-left: 25px">
+										<!-- Added inline style -->
+										<a href="/profile">
+											<img src="/public/images/profile2.png" alt="User Profile Logo"
+												class="img-fluid rounded-circle"
+												style="width: 16px; height: 17px" /></a>
+									</div>
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="#"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="cart.html"><i
+												class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i
 												class="fas fa-search"></i></a>
-										<a href="#">Account</a>
-										<ul class="sub-menu">
-											<li><a href="/logout">Logout</a></li>
-											<li><a href="#">User</a></li>
-											<!-- <li><a href="single-product.html">Single Product</a></li>
-										   <li><a href="cart.html">Cart</a></li> -->
-										</ul>
 									</div>
 								</li>
 							</ul>
@@ -154,14 +148,17 @@
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<input type="text" placeholder="Keywords" />
+							<button type="submit">
+								Search <i class="fas fa-search"></i>
+							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- end search arewa -->
 
 	<!-- breadcrumb-section -->
@@ -179,70 +176,50 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-
-
-	<br><br>
-
-	<!-- content -->
-	<section class="py-5">
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
 		<div class="container">
-			<div class="row gx-5">
-				<aside class="col-lg-6">
-					<div class="border rounded-4 mb-3 d-flex justify-content-center">
-						<img style="max-width: 100%; max-height: 500px; margin: auto;" id="img-1"
-							alt="Zoom Image on Mouseover" class="rounded-4 fit"
-							src="static/uploads/<%=data.product_image%>" />
-						<div id="img-2" style="background-image: url('.../static/uploads/<%data.product_image%>') no-repeat #FFF;
-				   width: 340px;
-  height: 340px;
-  
-  box-shadow: 0 5px 10px -2px rgba(0,0,0,0.3);
-  pointer-events: none;
-  position: absolute;
-  opacity: 0;
-  border: 4px solid whitesmoke;
-  z-index: 99;
-  border-radius: 100%;
-  display: block;
-  transition: opacity .2s;"></div>
+			<div class="row">
+				<!-- product image sector -->
+				<div class="col-md-6">
+					<div class="card">
+						<div class="d-flex justify-content-center">
+							<div class="col-md-12">
+								<div class="images p-3">
+									<div class="text-center mb-4">
+										<img id="main-image" src="static/uploads/<%=data.product_image[0]%>"
+											width="300" height="300"
+											data-zoom-image="static/uploads/<%=data.product_image[0]%>"
+											class="zoomGallery" />
+									</div>
+									<div class="thumbnail text-center" id="thumbnail">
+										<div class="row justify-content-center">
+										
+										  <div class="col-4 col-md-2">
+											<img onclick="change_image(this)" src="static/uploads/<%=data.product_image[1]%>" width="70" height="80" style="border: 0.5px solid rgba(128, 128, 128, 0.386);" />
+											
+										  </div>
+										  <div class="col-4 col-md-2">
+											<img onclick="change_image(this)" src="static/uploads/<%=data.product_image[2]%>" width="70" height="80" style="border: 0.5px solid rgba(128, 128, 128, 0.386);" />
 
+										  </div>
+										  <div class="col-4 col-md-2">
+											<img onclick="change_image(this)" src="static/uploads/<%=data.product_image[3]%>" width="70" height="80" style="border: 0.5px solid rgba(128, 128, 128, 0.386);" />
 
+										  </div>
+										  
+										</div>
+									  </div>
+									  
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="d-flex justify-content-center mb-3">
-						<a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-							href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp"
-							class="item-thumb">
-							<img width="60" height="60" class="rounded-2"
-								src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp" />
-						</a>
-						<a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-							href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp"
-							class="item-thumb">
-							<img width="60" height="60" class="rounded-2"
-								src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp" />
-						</a>
-						<a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-							href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp"
-							class="item-thumb">
-							<img width="60" height="60" class="rounded-2"
-								src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp" />
-						</a>
-						<a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-							href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp"
-							class="item-thumb">
-							<img width="60" height="60" class="rounded-2"
-								src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp" />
-						</a>
-						<a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-							href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"
-							class="item-thumb">
-							<img width="60" height="60" class="rounded-2"
-								src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp" />
-						</a>
-					</div>
-					<!-- thumbs-wrap.// -->
-					<!-- gallery-wrap .end// -->
-				</aside>
+				</div>
+
+				<!-- end product image sector -->
+
+				<!-- product details sector -->
 				<main class="col-lg-6">
 					<div class="ps-lg-3">
 						<h4 class="title text-dark">
@@ -348,7 +325,7 @@
 							<a href="#" class="btn btn-warning shadow-0"> Buy now </a>
 							<!-- <button type="submit" class="btn btn-primary shadow-0"><i
 									class="me-1 fa fa-shopping-basket"></i> Add to cart </button> -->
-							<input type="text" name="id" value="<%=data._id%>">
+							<!-- <input type="text" name="id" value="<%=data._id%>"> -->
 							<a href="/add_to_cart_view?id=<%=data._id%>" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
 							<a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i
 									class="me-1 fa fa-heart fa-lg"></i> Save </a>
@@ -409,35 +386,46 @@
 				</div>
 			</div>
 		</div>
+	</div>				<!-- end of product details sector -->
+			</div>
+		</div>
 	</div>
-	<!-- end more products -->
 
+	<!-- end single product -->
 
-
-
-
-
-
-
+	<!-- more products -->
+	
 
 	<!-- copyright -->
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
-						Reserved.<br>
+					<p>
+						Copyrights &copy; 2019 -
+						<a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
+						Reserved.<br />
 						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
 					</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">
 						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+							<li>
+								<a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+							</li>
+							<li>
+								<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+							</li>
+							<li>
+								<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+							</li>
+							<li>
+								<a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+							</li>
+							<li>
+								<a href="#" target="_blank"><i class="fab fa-dribbble"></i></a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -445,6 +433,115 @@
 		</div>
 	</div>
 	<!-- end copyright -->
+
+	<!-- to count kg -->
+	<script>
+		// Function to handle count increment
+		function incrementCount(productId) {
+			var countInput = document.getElementById("countInput");
+			var count = parseInt(countInput.value) + 1;
+
+			// Update the input value
+			countInput.value = count;
+
+		}
+
+		// Function to handle count decrement
+		function decrementCount(productId) {
+			var countInput = document.getElementById("countInput");
+			var count = parseInt(countInput.value) - 1;
+
+			// Ensure count doesn't go below 1
+			count = Math.max(count, 1);
+
+			// Update the input value
+			countInput.value = count;
+
+			// Send AJAX request to update the count in the database
+			
+		}
+	</script>
+
+	<!-- zoom and 3 image -->
+	<script>
+		function change_image(image) {
+			var container = document.getElementById("main-image");
+			container.src = image.src;
+
+			// Reinitialize elevateZoom on the main image
+			$(document).ready(function() {
+    $(".zoomGallery").elevateZoom({
+      zoomWindowPosition: 1,
+      zoomWindowWidth: 300,
+      zoomWindowHeight: 300,
+      gallery: "thumbnail",
+      cursor: "crosshair",
+      galleryActiveClass: "active",
+      responsive: true,
+      zoomWindowFadeIn: 500,
+      zoomWindowFadeOut: 500,
+      lensFadeIn: 500,
+      lensFadeOut: 500,
+      zoomWindowContainerClass: "zoom-display"
+    });
+  });
+}
+	</script>
+
+	<!-- add to cart -->
+	<script>
+		$(function () {
+			var selectedClass = "";
+			$("p").click(function () {
+				selectedClass = $(this).attr("data-rel");
+				$("#portfolio").fadeTo(50, 0.1);
+				$("#portfolio div")
+					.not("." + selectedClass)
+					.fadeOut();
+				setTimeout(function () {
+					$("." + selectedClass).fadeIn();
+					$("#portfolio").fadeTo(50, 1);
+				}, 500);
+			});
+		});
+
+		function addToCart(event, productId) {
+			event.preventDefault();
+			var addButton = event.target;
+			addButton.disabled = true;
+const count1=document.getElementById('countInput').value
+console.log(count1);
+			// Create a request payload
+			var data = { productId: productId ,count:count1};
+
+			// Send a POST request using Fetch API
+			fetch("/addtocart", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			})
+				.then((response) => response.json())
+				.then((response) => {
+					console.log("Product added to cart:", response.message);
+					var cartCount = parseInt(
+						document.getElementById("cartCount").innerText
+					);
+					document.getElementById("cartCount").innerText = cartCount + 1;
+					addButton.disabled = false; // Enable the button after successful request
+				})
+				.catch((error) => {
+					console.error("Error adding product to cart:", error);
+					addButton.disabled = false; // Enable the button in case of an error
+				});
+		}
+	</script>
+	Make sure to check if any other issues exist outside the provided code
+	snippet that could affect the rendering of the page.
+
+	<!-- to increment the count -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- jquery -->
 	<script src="static/usr/assets/js/jquery-1.11.3.min.js"></script>
@@ -466,7 +563,8 @@
 	<script src="static/usr/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="static/usr/assets/js/main.js"></script>
-
+	<!-- - Elevate Zoom - -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
 </body>
 
 </html>

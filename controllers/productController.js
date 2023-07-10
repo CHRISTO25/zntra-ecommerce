@@ -22,10 +22,16 @@ const loadAddproduct=async(req,res)=>{
 
 const insertProducts=async(req,res)=>{
     try {
-        product_name=req.body.name
-        product_description=req.body.description
-        product_quantity=req.body.quantity
-        product_image=req.file
+      const  product_name=req.body.name
+      const  product_description=req.body.description
+      const  product_quantity=req.body.quantity
+        const files = req.files;
+        const  product_image = [];
+
+        files.forEach((file) => {
+            const image = file.filename;
+             product_image.push(image);
+        });
         product_category=req.body.category
         console.log(product_category);
         product_price=req.body.price
@@ -39,7 +45,7 @@ const insertProducts=async(req,res)=>{
                 product_quantity:product_quantity,
                 product_price:product_price,
                 product_category:product_category,
-                product_image:product_image.filename
+                product_image:product_image
                 
             });
 
@@ -59,7 +65,7 @@ const insertProducts=async(req,res)=>{
 const loadviewProducts=async(req,res)=>{
     try {
         const productData=await Product.find()
-
+        console.log(productData,"=====================================");
         if(productData){
             res.render('productView',{data:productData,er:" Product details has been founded"})
         }

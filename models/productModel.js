@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 const { schema } = require('./userModel')
+const { array } = require('../middleware/multer')
 
 const productsSchema=new mongoose.Schema({
          product_name:{
@@ -23,7 +24,7 @@ const productsSchema=new mongoose.Schema({
             required:true
          },
          product_image:{
-            type:String,
+            type:Array,
             required:true
          },
          product_verified:{

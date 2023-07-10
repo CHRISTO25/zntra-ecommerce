@@ -5,7 +5,7 @@
 <!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
 <head>
     <meta charset="utf-8">
-    <title>zntra Dashboard</title>
+    <title>Evara Dashboard</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +14,80 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/icons/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/theme/favicon.svg">
     <!-- Template CSS -->
     <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        /* .content-main {
+            background-color: darkgreen;
+        } */
+    
+        .card {
+            background-color: darkgreen;
+        }
+         
+
+        .form-label{
+            color: white;
+        }
+
+
+        .form-control {
+            background-color:white;
+            color: rgb(0, 0, 0);
+        }
+    
+        .form-control::placeholder {
+            color: white;
+        }
+    
+        .btn {
+            background-color: rgb(7, 92, 5);
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn:hover {
+            background-color: green;
+            color: azure;
+        }
+    
+        .hover-up:hover {
+            transform: scale(1.1);
+        }
+
+        .card-header,h4{
+            background-color: rgb(17, 108, 10);
+            color: white !important;
+        }
+        input[type="date"] {
+  /* Customize the appearance of the date input */
+  background-color: #f2f2f2;
+  color: #333333;
+  padding: 8px;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+}
+
+/* Optional: Change the appearance of the date picker icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the color of the icon */
+  cursor: pointer;
+}
+
+/* Optional: Adjust the size of the input */
+input[type="date"] {
+  width: 200px;
+  height: 32px;
+}
+    </style>
+    
+    
 </head>
 
 <body>
@@ -26,7 +95,7 @@
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
             <a href="/dash" class="brand-wrap">
-                <img src="static/admin/assets/imgs/icons/logo.png" class="logo" alt="Evara Dashboard">
+                <img src="static/admin/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
@@ -39,11 +108,12 @@
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li class="menu-item has-submenu">
+                <li  class="menu-item active">
                     <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Categories</span>
+                        <span class="text">Coupon</span>
                     </a>
                     <div class="submenu">
+
                         <a href="/categories">View</a>
                         <a href="/categoriesAdd">Add</a>
                     </div>
@@ -57,8 +127,8 @@
                         <a href="/addusers">Add</a>
                     </div>
                 </li>
-                <li class="menu-item active">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_products"> <i class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Products</span>
                     </a>
                     <div class="submenu">
@@ -67,7 +137,16 @@
                         
                     </div>
                 </li>
-
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/add_coupons">Add coupons</a>
+                        <a href="/view_coupons">View coupons</a>
+                        
+                    </div>
+                </li>
                 
             <br>
             <br>
@@ -129,131 +208,95 @@
             </div>
         </header>
         <section class="content-main">
-            <form action="/insert_product" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-9">
-                    <div class="content-header">
-                        <h2 class="content-title">Add New Product</h2>
-                        <div>
-                            <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button>
-                            <button class="btn btn-md rounded font-sm hover-up" type="submit">Save</button>
+            <form action="/Coupon_add" method="post"  onsubmit="validateForm(event)">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 style="color: rgb(230, 10, 10);" class="content-title"><%=er%></h2><br>
+                            <div>
+                                <a href="/categories" class="btn   hover-up">View categories</a>
+                                <button class="btn  hover-up" type="submit">Save</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Basic</h4>
-                        </div>
-                        <div class="card-body">
-                            
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Basic</h4>
+                            </div>
+                            <div class="card-body">
                                 <div class="mb-4">
-                                    <label for="product_name" class="form-label">Product Name</label>
-                                    <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name">
+                                    <label for="name" class="form-label">Coupon Name</label>
+                                    <input type="text" placeholder="Type here" class="form-control" name="name" id="name">
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Full description</label>
-                                    <textarea placeholder="Type here" class="form-control" rows="4" name="description"></textarea>
+                                    <label for="code" class="form-label">Coupon Code</label>
+                                    <input type="text" placeholder="Type here" class="form-control" name="code" id="code">
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label">Price</label>
-                                            <div class="row gx-2">
-                                                <input placeholder="RS" type="number" name="price" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label">Quantity</label>
-                                            <input placeholder="Quantity" type="number" name="quantity" class="form-control">
-                                        </div>
-                                    </div>
-                                  
+                                <div class="mb-4">
+                                    <label for="amount" class="form-label">Coupon Amount</label>
+                                    <input type="number" placeholder="Type here" class="form-control" name="amount" id="amount">
                                 </div>
-                        </div>
-                    </div> <!-- card end// -->
-                  
+                                <div class="mb-4">
+                                    <label class="form-label">Coupon Description</label>
+                                    <textarea placeholder="Type here" class="form-control" name="description" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div><!-- card end// -->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Limit</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-upload">
+                                    <label for="ex_date" class="form-label">Coupon Expire Date</label>
+                                    <input type="date" placeholder="Type here" class="form-control" name="ex_date" id="ex_date">
+                                </div>
+                                <br>
+                                <div class="input-upload">
+                                    <label for="min_amount" class="form-label">Coupon Minimum Amount</label>
+                                    <input type="number" placeholder="Type here" class="form-control" name="min_amount" id="min_amount">
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                    </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                          <h4>Media</h4>
-                        </div>
-                        <div class="card-body">
-                          <div class="input-upload">
-                            <img id="image-1" src="static/admin/assets/imgs/theme/upload.svg" alt="">
-                            <input class="form-control" type="file" name="image" onchange="previewImage(event, 'image-1')">
-                          </div>
-                          <div class="input-upload">
-                            <img id="image-2" src="static/admin/assets/imgs/theme/upload.svg" alt="">
-                            <input class="form-control" type="file" name="image" onchange="previewImage(event, 'image-2')">
-                          </div>
-                          <div class="input-upload">
-                            <img id="image-3" src="static/admin/assets/imgs/theme/upload.svg" alt="">
-                            <input class="form-control" type="file" name="image" onchange="previewImage(event, 'image-3')">
-                          </div>
-                          <div class="input-upload">
-                            <img id="image-4" src="static/admin/assets/imgs/theme/upload.svg" alt="">
-                            <input class="form-control" type="file" name="image" onchange="previewImage(event, 'image-4')">
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <script src="https://cdn.jsdelivr.net/npm/cropperjs"></script>
-                      <script>
-                        function previewImage(event, imageId) {
-                          var input = event.target;
-                          var image = document.getElementById(imageId);
-                          
-                          if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                              image.src = e.target.result;
-                              
-                              // Initialize Cropper.js after the image is loaded
-                              var cropper = new Cropper(image, {
-                                aspectRatio: 1, // Set the aspect ratio for cropping (e.g., 1:1 for a square)
-                                viewMode: 1, // Set the view mode (0: free, 1: restricted, 2: proportionally constrained)
-                                crop: function(event) {
-                                  // Get the cropped data (e.g., cropped image coordinates, width, height)
-                                  var croppedData = cropper.getData();
-                                  // Use the cropped data as needed (e.g., save to a hidden input field or send to the server)
-                                  console.log(croppedData);
-                                }
-                              });
-                            };
-                            reader.readAsDataURL(input.files[0]);
-                          }
-                        }
-                      </script>
-                      
-                      
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Organization</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row gx-2">
-                                <div class="col-sm-6 mb-3">
-                                    <label class="form-label">Category</label>
-                                    <select class="form-select" name="category">
-                                        <% data.forEach(x=>{
-                                            if(x.cat_verify==true){%>
-                                        <option><%=x.cat_name%></option>
-                                        <%}})%>  
-                                    </select>
-                                </div>
-                              
-                                
-                            </div> <!-- row.// -->
-                        </div>
-                    </div> <!-- card end// -->
-                </div>
-            </div>
-        </form>
-        </section>
+            </form>
+            
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                function validateForm(event) {
+                    event.preventDefault(); // Prevent form submission
+            
+                    // Get form fields
+                    const couponName = document.querySelector('#name').value;
+                    const couponCode = document.querySelector('#code').value;
+                    const couponAmount = document.querySelector('#amount').value;
+                    const couponExpireDate = document.querySelector('#ex_date').value;
+                    const couponMinAmount = document.querySelector('#min_amount').value;
+            
+                    // Validate fields
+                    if (!couponName || !couponCode || !couponAmount || !couponExpireDate || !couponMinAmount) {
+                        // Display SweetAlert error message
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Validation Error',
+                            text: 'Please fill in all fields',
+                            confirmButtonColor: 'red'
+                        });
+                        return;
+                    }
+            
+                    // Perform additional validations if needed
+            
+                    // Submit the form if all validations pass
+                    event.target.submit();
+                }
+            </script>
+            
+        </section> 
 
         
         <footer class="main-footer font-xs">
@@ -271,7 +314,7 @@
             </div>
         </footer>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="static/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
     <script src="static/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>

@@ -31,35 +31,46 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="static/usr/assets/css/responsive.css">
     <style>
-        .btnn1 {
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 10px 20px; /* Padding */
-  text-align: center; /* Center text */
-  text-decoration: none; /* No text decoration */
-  display: inline-block; /* Display as a block */
-  font-size: 16px; /* Font size */
-  margin: 4px 2px; /* Margin */
-  cursor: pointer; /* Add cursor pointer */
-  border-radius: 30px;
-}
-
-.btnn2 {
-  background-color: #f44336; /* Red background */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 10px 20px; /* Padding */
-  text-align: center; /* Center text */
-  text-decoration: none; /* No text decoration */
-  display: inline-block; /* Display as a block */
-  font-size: 16px; /* Font size */
-  margin: 4px 2px; /* Margin */
-  border-radius: 30px;
-  cursor: pointer; /* Add cursor pointer */
-}
-
-    </style>
+		.single-product-item {
+		  background-color: black;
+		  color: white;
+		  padding: 10px;
+		  border-radius: 10px;
+		}
+	  
+		.single-product-item h3, .single-product-item p {
+		  color: white;
+		}
+	  
+		/* .single-product-item .product-image img {
+		  height: 150px;
+		} */
+	  
+		.btnn1, .btnn2 {
+		  color: white;
+		  border-radius: 5px;
+		  padding: 5px 10px;
+		  transition: background-color 0.3s;
+		}
+	  
+		.btnn1 {
+		  background-color: #4CAF50;
+		}
+	  
+		.btnn2 {
+		  background-color: #f44336;
+		}
+	  
+		.btnn1:hover, .btnn2:hover {
+		  background-color: gray;
+		  cursor: pointer;
+		}
+	  
+		.single-product-item:hover {
+		  transform: scale(1.1);
+		  transition: transform 0.3s;
+		}
+	  </style>
     
 
 </head>
@@ -97,15 +108,15 @@
 									</ul>
 								</li>
 								<li><a href="#">About</a></li>
-								<li><a href="#">Pages</a>
+								<li><a href="#">Category</a>
 									<ul class="sub-menu">
-										<!-- <li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li> -->
+										<% data.forEach(x=>{
+											if(x.cat_verify==true){%>
+											
+											<li><a href="/viewitems?id=<%=x._id%>"><%=x.cat_name%></a></li>		
+										
+	
+										 <%}})%>  
 									</ul>
 								</li>
 								<li><a href="#">News</a>
@@ -203,35 +214,55 @@
 			</div> -->
          
             
-            <div class="row product-lists">
-                <% data.forEach(x => {
-                    if (x.product_verified == true) { %>
-                        <div class="col-lg-4 col-md-6 text-center strawberry">
-                            <div class="single-product-item">
-                                <div class="product-image">
-                                    <a href="/details?id=<%=x._id%>"><img style="height: 200px;" src="static/uploads/<%=x.product_image%>" alt=""></a>
-                                </div>
-                                <h3><%=x.product_name%></h3>
-                                <p class="product-price"><span style="color: green;">Only <%=x.product_quantity%></span>₹ <%=x.product_price%></p>
-                                <button class="btnn1"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                                <button class="btnn2"><i class="far fa-heart"></i> Add to Wishlist</button>
-                            </div>
-                        </div>
-                        <script>
-                            const btnn1 = document.querySelector('.btnn1');
-const btnn2 = document.querySelector('.btnn2');
-
-btnn1.addEventListener('click', () => {
-  // Add to cart functionality here
-});
-
-btnn2.addEventListener('click', () => {
-  // Add to wishlist functionality here
-});
-                        </script>
-                <% } }) %>
-            </div>
-            
+           
+			<div class="row product-lists">
+				<% data.forEach(x => {
+					if (x.product_verified == true) { %>
+						<div class="col-lg-4 col-md-6 text-center strawberry">
+							<div class="single-product-item">
+								<div class="product-image">
+									<a href="/details?id=<%=x._id%>">
+										<img src="static/uploads/<%=x.product_image[0]%>" alt="">
+									</a>
+								</div>
+								<h3><%=x.product_name%></h3>
+								<p class="product-price">
+									<span style="color: orangered;">Only <%=x.product_quantity%></span>₹ <%=x.product_price%>
+								</p>
+								<button class="btnn1"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+								<button class="btnn2"><i class="far fa-heart"></i> Add to Wishlist</button>
+							</div>
+						</div>
+						<script>
+							const btnn1 = document.querySelector('.btnn1');
+							const btnn2 = document.querySelector('.btnn2');
+			  
+							btnn1.addEventListener('mouseover', () => {
+							  btnn1.style.transform = 'scale(1.1)';
+							});
+			  
+							btnn1.addEventListener('mouseout', () => {
+							  btnn1.style.transform = 'scale(1)';
+							});
+			  
+							btnn2.addEventListener('mouseover', () => {
+							  btnn2.style.transform = 'scale(1.1)';
+							});
+			  
+							btnn2.addEventListener('mouseout', () => {
+							  btnn2.style.transform = 'scale(1)';
+							});
+			  
+							btnn1.addEventListener('click', () => {
+							  // Add to cart functionality here
+							});
+			  
+							btnn2.addEventListener('click', () => {
+							  // Add to wishlist functionality here
+							});
+						</script>
+				<% } }) %>
+			  </div>
             
           
               

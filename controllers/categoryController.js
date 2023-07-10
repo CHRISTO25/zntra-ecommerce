@@ -95,7 +95,15 @@ const categoryEditpage=async(req,res)=>{
         const Categoryname=req.body.name
         const Categorydescription=req.body.description
         const Categoryimage=req.file
-        await Category.findByIdAndUpdate({_id:id},{$set:{cat_name:Categoryname,cat_description:Categorydescription,cat_image:Categoryimage.filename}})
+        if(Categoryimage)
+        {
+            await Category.findByIdAndUpdate({_id:id},{$set:{cat_name:Categoryname,cat_description:Categorydescription,cat_image:Categoryimage.filename}})
+
+        }
+        else{
+            await Category.findByIdAndUpdate({_id:id},{$set:{cat_name:Categoryname,cat_description:Categorydescription}})
+ 
+        }
         const categoryData = await Category.find();
 
         if (categoryData) {

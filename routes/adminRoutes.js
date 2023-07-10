@@ -13,11 +13,12 @@ const auth = require("../middleware/userAuth")
 admin_routes.use(bodyparser.json())
 admin_routes.use(bodyparser.urlencoded({extended:true}))
 
-
+//========================controller===================================
 
  const adminController=require('../controllers/adminController')
  const categoriescontroller=require('../controllers/categoryController')
  const productController=require('../controllers/productController')
+ const couponController=require('../controllers/couponController')
 //==========================admin login================================
 
  admin_routes.get('/admin',adminController.loadAdminlogin)
@@ -43,11 +44,15 @@ admin_routes.get('/blk_unblk',adminController.userBlk_unblk)
 
 //==========================products===================================
 admin_routes.get('/addproduct',productController.loadAddproduct)
-admin_routes.post('/insert_product',store.single('image'),productController.insertProducts)
+admin_routes.post('/insert_product',store.array('image',4),productController.insertProducts)
 admin_routes.get('/view_products',productController.loadviewProducts)
 admin_routes.get('/active_disable',productController.loadActive_Disable)
 admin_routes.get('/editProduct',productController.loadProductedit)
-admin_routes.post('/edit_the_product',store.single('image'),productController.productEdit)
+admin_routes.post('/edit_the_product',store.array('image',4),productController.productEdit)
+
+//==========================coupons======================================
+admin_routes.get('/add_coupons',couponController.load_addCoupon)
+admin_routes.post('/Coupon_add',couponController.Save_Coupon)
 
 
 

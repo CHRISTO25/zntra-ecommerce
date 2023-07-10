@@ -59,22 +59,22 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="#">Home</a>
+								<li class="current-list-item"><a href="/home">Home</a>
 									<ul class="sub-menu">
-										<li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li>
+										<!-- <li><a href="index.html">Static Home</a></li>
+										<li><a href="index_2.html">Slider Home</a></li> -->
 									</ul>
 								</li>
 								<li><a href="about.html">About</a></li>
-								<li><a href="#">Pages</a>
+								<li><a href="#">Category</a>
 									<ul class="sub-menu">
-										<li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li>
+										<% data.forEach(x=>{
+											if(x.cat_verify==true){%>
+											
+											<li><a href="/viewitems?id=<%=x._id%>"><%=x.cat_name%></a></li>		
+										
+	
+										 <%}})%>  
 									</ul>
 								</li>
 								<li><a href="news.html">News</a>
@@ -150,11 +150,11 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
 					<div class="cart-table-wrap">
-						//================
+					
 						<table class="cart-table">
 							<thead class="cart-table-head">
 							  <tr class="table-head-row">
-								<th class="product-remove"></th>
+								<th class="product-remove">Remove</th>
 								<th class="product-image">Product Image</th>
 								<th class="product-name">Name</th>
 								<th class="product-price">Price</th>
@@ -167,10 +167,10 @@
 							  <% data.forEach(x => { %>
 								<tr class="table-body-row">
 								  <td class="product-remove">
-									<a href="#"><i class="far fa-window-close"></i></a>
+									<a href="/delete_from_cart?id=<%=x.details._id%>"><i class="far fa-window-close"></i></a>
 								  </td>
 								  <td class="product-image">
-									<img src="static/uploads/<%=x.details.product_image%>" alt="">
+									<img src="static/uploads/<%=x.details.product_image[0]%>" alt="">
 								  </td>
 								  <td class="product-name">
 									<%=x.details.product_name%>
@@ -194,140 +194,13 @@
 							  <% y++ } ) %>
 							</tbody>
 						  </table>
-						  <script>
-							const incrementBtnEls = Array.from(document.getElementsByClassName('increment-btn'));
-							incrementBtnEls.forEach(el => el.addEventListener('click', (e) => {
-								const id = e.currentTarget.id.split('-')[1];
-								console.log(`Incr: ${id}`);
-								const quantityInputEl = document.getElementById(`quantity-${id}`);
-								const productPriceElement = document.getElementById(`price-${id}`);
-								const productTotalInput = document.getElementById(`total-${id}`);
-
-								quantityInputEl.value = Number(quantityInputEl.value) + 1;
-								updateProductTotal(quantityInputEl.value, productPriceElement, productTotalInput);
-								calculateSubtotal();
-								quantityInputEl.dispatchEvent(new Event('change'));
-							}));
-
-							const decrementBtnEls = Array.from(document.getElementsByClassName('decrement-btn'));
-							decrementBtnEls.forEach(el => el.addEventListener('click', (e) => {
-								const id = e.currentTarget.id.split('-')[1];
-								console.log(`Incr: ${id}`);
-								const quantityInputEl = document.getElementById(`quantity-${id}`);
-								const productPriceElement = document.getElementById(`price-${id}`);
-								const productTotalInput = document.getElementById(`total-${id}`);
-
-								if(Number(quantityInputEl.value)=== 1) { return; }
-
-								quantityInputEl.value = Number(quantityInputEl.value) - 1;
-								updateProductTotal(quantityInputEl.value, productPriceElement, productTotalInput);
-								calculateSubtotal();
-								quantityInputEl.dispatchEvent(new Event('change'));
-							}));
-							// Get the cart element
-							const cart = document.querySelector('.cart-table');
-						  
-							// Add event listeners to the increment and decrement buttons
-							cart.addEventListener('click', (event) => {
-								return;
-							  const target = event.target;
-						  
-							  if (target.classList.contains('increment-btn') || target.classList.contains('decrement-btn')) {
-								const productId = target.id.split('-')[1];
-								const quantityInput = document.getElementById(`quantity-${productId}`);
-								const productPriceElement = target.parentNode.previousElementSibling;
-								const productTotalInput = target.parentNode.nextElementSibling.querySelector('.product-total-input');
-						  
-								let quantity = parseInt(quantityInput.value);
-						  
-								if (target.classList.contains('increment-btn')) {
-								  quantity++;
-								  quantityInput.dispatchEvent(new Event('change'));
-								} else {
-								  if (quantity > 1) {
-									quantity--;
-									quantityInput.dispatchEvent(new Event('change'));
-								  }
-								}
-						  
-								quantityInput.value = quantity;
-								updateProductTotal(quantity, productPriceElement, productTotalInput);
-								calculateSubtotal();
-							  }
-							});
-						  
-							// Update the product total based on quantity and price
-							function updateProductTotal(quantity, priceElement, totalInput) {
-							  const price = parseFloat(priceElement.textContent);
-							  const totalPrice = quantity * price;
-							  totalInput.value = totalPrice.toFixed(2);
-							}
-						  
-							// Calculate the subtotal and update the total table
-							function calculateSubtotal() {
-							  const productTotalInputs = document.querySelectorAll('.product-total-input');
-							  let subtotal = 0;
-						  
-							  productTotalInputs.forEach((totalInput) => {
-								subtotal += parseFloat(totalInput.value);
-							  });
-						  
-							  const subtotalInput = document.getElementById('subtotal-input');
-							  if(!subtotalInput) { return; }
-							  subtotalInput.value = subtotal.toFixed(2);
-							  calculateTotal(subtotal);
-							}
-						  
-							// Calculate the total and update the total table
-							function calculateTotal(subtotal) {
-							  const totalInput = document.getElementById('total-input');
-							  if(!totalInput) { return; }
-							  const total = subtotal;
-						  
-							//   totalInput.value = total.toFixed(2);
-							}
-						  
-							// Initial calculation
-							calculateSubtotal();
-
-
-							const updateCartItem = async (id, quantity, quantityInputEl) => {
-								const data = {
-									id,
-									quantity,
-								};
-								const response = await fetch('/update-cart-item', {
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json',
-									},
-									body: JSON.stringify(data),
-								});
-
-								const resBody = await response.json();
-								if(!resBody.isOk) {
-									console.log('Error when updating quantity');
-									return;
-								}
-
-								quantityInputEl.value = resBody.quantity;
-								console.log('Cart updated');
-							};
-
-							const quantityInputEls = Array.from(document.getElementsByClassName('quantity-input'));
-							console.log(quantityInputEls[0])
-							quantityInputEls.forEach(el => el.addEventListener('change', (e) => {
-								const id = e.currentTarget.id.split('-')[1];
-								const quantity = e.currentTarget.value;
-								updateCartItem(id, quantity, el);
-							}));
-						  </script>
+						
 						  
 						  
 						  
 						  
 						  
-						//================  
+						
 						  
 					</div>
 				</div>
@@ -342,33 +215,216 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr class="total-data">
-							<td><strong>Subtotal: </strong></td>
-							<td><input type="text" class="subtotal-input" id="subtotal-input" readonly></td>
-						  </tr>
-				  
-						  <tr class="total-data">
-							<td><strong>Total: </strong></td>
-							<td><input type="text" class="total-input" id="total-input" readonly></td>
-						  </tr>
-						</tbody>
-					  </table>
-						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">Update Cart</a>
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
-						</div>
-					</div>
-					
-
-
-
-					<div class="coupon-section">
-						<h3>Apply Coupon</h3>
-						<div class="coupon-form-wrap">
-							<form action="index.html">
-								<p><input type="text" placeholder="Coupon"></p>
-								<p><input type="submit" value="Apply"></p>
+							<tr class="total-data">
+								<td><strong>Subtotal: </strong></td>
+								<td><input type="text" class="subtotal-input" id="subtotal-input" readonly></td>
+							  </tr>
+							  
+							  <tr class="full-total-data">
+								<td><strong>Total: </strong></td>
+								<td><input type="text" class="total-input" id="total-input" name="full_total" readonly></td>
+							  </tr>
+							  </tbody>
+							  </table>
+							  
+							  <div class="cart-buttons">
+								<a href="/loadcheckout" id="checkout-btn" class="boxed-btn black">Check Out</a>
+							  </div>
+							  
+							  <div class="coupon-section">
+								<h3>Apply Coupon</h3>
+								<div class="coupon-form-wrap">
+								  <form action="#">
+									<p><input type="text" placeholder="Coupon" id="coupon-input"></p>
+									<input type="number" name="coupon_value" id="coupon_value" hidden readonly>
+									<input type="number" name="limit_value" id="limit_value" hidden readonly>
+								  </form>
+								</div>
+							  </div>
+							  
+							  <script>
+								const subtotalInput = document.getElementById('subtotal-input');
+								const totalInput = document.getElementById('total-input');
+								const couponInput = document.getElementById('coupon_value');
+							  
+								couponInput.addEventListener('input', () => {
+								  const subtotalValue = parseFloat(subtotalInput.value);
+								  const couponValue = parseFloat(couponInput.value);
+								  const newTotalValue = subtotalValue - couponValue;
+							  
+								  if (!isNaN(newTotalValue) && newTotalValue >= 0) {
+									totalInput.value = newTotalValue.toFixed(2);
+								  }
+								});
+							  </script>
+							  
+							    
+							<p><a href=""><button id="apply-coupon-btn" class="boxed-btn">Apply</button> </a></p>
 							</form>
+
+							<script>
+								const incrementBtnEls = Array.from(document.getElementsByClassName('increment-btn'));
+								incrementBtnEls.forEach(el => el.addEventListener('click', (e) => {
+									const id = e.currentTarget.id.split('-')[1];
+									console.log(`Incr: ${id}`);
+									const quantityInputEl = document.getElementById(`quantity-${id}`);
+									const productPriceElement = document.getElementById(`price-${id}`);
+									const productTotalInput = document.getElementById(`total-${id}`);
+	
+									quantityInputEl.value = Number(quantityInputEl.value) + 1;
+									updateProductTotal(quantityInputEl.value, productPriceElement, productTotalInput);
+									calculateSubtotal();
+									quantityInputEl.dispatchEvent(new Event('change'));
+								}));
+	
+								const decrementBtnEls = Array.from(document.getElementsByClassName('decrement-btn'));
+								decrementBtnEls.forEach(el => el.addEventListener('click', (e) => {
+									const id = e.currentTarget.id.split('-')[1];
+									console.log(`Incr: ${id}`);
+									const quantityInputEl = document.getElementById(`quantity-${id}`);
+									const productPriceElement = document.getElementById(`price-${id}`);
+									const productTotalInput = document.getElementById(`total-${id}`);
+	
+									if(Number(quantityInputEl.value)=== 1) { return; }
+	
+									quantityInputEl.value = Number(quantityInputEl.value) - 1;
+									updateProductTotal(quantityInputEl.value, productPriceElement, productTotalInput);
+									calculateSubtotal();
+									quantityInputEl.dispatchEvent(new Event('change'));
+								}));
+								// Get the cart element
+								const cart = document.querySelector('.cart-table');
+							  
+								// Add event listeners to the increment and decrement buttons
+								cart.addEventListener('click', (event) => {
+									return;
+								  const target = event.target;
+							  
+								  if (target.classList.contains('increment-btn') || target.classList.contains('decrement-btn')) {
+									const productId = target.id.split('-')[1];
+									const quantityInput = document.getElementById(`quantity-${productId}`);
+									const productPriceElement = target.parentNode.previousElementSibling;
+									const productTotalInput = target.parentNode.nextElementSibling.querySelector('.product-total-input');
+							  
+									let quantity = parseInt(quantityInput.value);
+							  
+									if (target.classList.contains('increment-btn')) {
+									  quantity++;
+									  quantityInput.dispatchEvent(new Event('change'));
+									} else {
+									  if (quantity > 1) {
+										quantity--;
+										quantityInput.dispatchEvent(new Event('change'));
+									  }
+									}
+							  
+									quantityInput.value = quantity;
+									updateProductTotal(quantity, productPriceElement, productTotalInput);
+									calculateSubtotal();
+								  }
+								});
+							  
+								// Update the product total based on quantity and price
+								function updateProductTotal(quantity, priceElement, totalInput) {
+								  const price = parseFloat(priceElement.textContent);
+								  const totalPrice = quantity * price;
+								  totalInput.value = totalPrice.toFixed(2);
+								}
+							  
+								// Calculate the subtotal and update the total table
+								function calculateSubtotal() {
+								  const productTotalInputs = document.querySelectorAll('.product-total-input');
+								  let subtotal = 0;
+							  
+								  productTotalInputs.forEach((totalInput) => {
+									subtotal += parseFloat(totalInput.value);
+								  });
+							  
+								  const subtotalInput = document.getElementById('subtotal-input');
+								  if(!subtotalInput) { return; }
+								  subtotalInput.value = subtotal.toFixed(2);
+								  calculateTotal(subtotal);
+								}
+							  
+								// Calculate the total and update the total table
+								function calculateTotal(subtotal) {
+								  const totalInput = document.getElementById('total-input');
+								  if(!totalInput) { return; }
+								  const total = subtotal;
+							  
+								//   totalInput.value = total.toFixed(2);
+								}
+							  
+								// Initial calculation
+								calculateSubtotal();
+	
+	
+								const updateCartItem = async (id, quantity, quantityInputEl) => {
+									const data = {
+										id,
+										quantity,
+									};
+									const response = await fetch('/update-cart-item', {
+										method: 'POST',
+										headers: {
+											'Content-Type': 'application/json',
+										},
+										body: JSON.stringify(data),
+									});
+	
+									const resBody = await response.json();
+									if(!resBody.isOk) {
+										console.log('Error when updating quantity');
+										return;
+									}
+	
+									quantityInputEl.value = resBody.quantity;
+									console.log('Cart updated');
+								};
+	
+								const quantityInputEls = Array.from(document.getElementsByClassName('quantity-input'));
+								console.log(quantityInputEls[0])
+								quantityInputEls.forEach(el => el.addEventListener('change', (e) => {
+									const id = e.currentTarget.id.split('-')[1];
+									const quantity = e.currentTarget.value;
+									updateCartItem(id, quantity, el);
+								}));
+	
+								// Calculate the subtotal and update the total table
+	function calculateSubtotal() {
+	  const productTotalInputs = document.querySelectorAll('.product-total-input');
+	  let subtotal = 0;
+	
+	  productTotalInputs.forEach((totalInput) => {
+		subtotal += parseFloat(totalInput.value);
+	  });
+	
+	  const subtotalInput = document.getElementById('subtotal-input');
+	  if (!subtotalInput) { return; }
+	  subtotalInput.value = subtotal.toFixed(2);
+	  calculateTotal(subtotal);
+	}
+	
+	// Calculate the total and update the total table
+	function calculateTotal(subtotal) {
+	  const totalInput = document.getElementById('total-input');
+	  if (!totalInput) { return; }
+	  const total = subtotal;
+	
+	  totalInput.value = total.toFixed(2);
+	}
+	
+	// Calculate and display the initial subtotal and total
+	window.addEventListener('DOMContentLoaded', () => {
+	  calculateSubtotal();
+	});
+	
+	
+	
+		
+	
+							  </script>
+						
 						</div>
 					</div>
 				</div>
@@ -376,6 +432,42 @@
 		</div>
 	</div>
 	<!-- end cart -->
+
+
+	<script>
+		async function fetchCoupon(code) {
+			const response = await fetch(`/coupons/${code}`);
+			const resBody = await response.json();
+			return resBody.coupon;
+		}
+
+		const couponCodeInput = document.getElementById('coupon-input');
+		const couponAmountEl = document.getElementById('coupon_value');
+		const couponMinimumEl = document.getElementById('limit_value');
+		const applyCouponBtn = document.getElementById('apply-coupon-btn');
+		applyCouponBtn.addEventListener('click', async (e) => {
+			e.preventDefault();
+			console.log('Coupon applied')
+			const code = couponCodeInput.value;
+			const coupon = await fetchCoupon(code);
+			if(!coupon) {
+				alert(`No coupon with code '${code}'`);
+			}
+			couponAmountEl.value = coupon.coupon_amount;
+			couponMinimumEl.value = coupon.coupon_minimum;
+
+			couponAmountEl.hidden = false;
+			couponMinimumEl.hidden = false;
+
+			const subtotalInput = document.getElementById('subtotal-input');
+			const totalInput = document.getElementById('total-input');
+
+			totalInput.value = 
+				subtotalInput.value >= coupon.coupon_minimum 
+				? Number(subtotalInput.value) - coupon.coupon_amount
+				: totalInput.value
+		})
+	</script>
 	
 
 	<!-- logo carousel -->

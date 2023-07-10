@@ -50,8 +50,8 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="/dash">
-								<img src="static/usr/assets/img/logo1.png" alt="">
+							<a href="/home">
+								<img src="static/usr/assets/img/zntra1.png" alt="">
 							</a>
 						</div>
 						<!-- logo -->
@@ -66,15 +66,15 @@
 									</ul>
 								</li>
 								<li><a href="#">About</a></li>
-								<li><a href="#">Pages</a>
+								<li><a href="#">Category</a>
 									<ul class="sub-menu">
-										<!-- <li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li> -->
+										<% data.forEach(x=>{
+											if(x.cat_verify==true){%>
+											
+											<li><a href="/viewitems?id=<%=x._id%>"><%=x.cat_name%></a></li>		
+										
+	
+										 <%}})%>  
 									</ul>
 								</li>
 								<li><a href="#">News</a>

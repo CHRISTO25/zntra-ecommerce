@@ -32,12 +32,14 @@
                     <form method="post" action="/signin" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="email" name="email" id="your_name" placeholder="Your Email"/>
-                        </div>
-                        <div class="form-group">
+                            <input type="email" name="email" id="your_name" placeholder="Your Email" />
+                            <span class="error-message"></span>
+                          </div>
+                          <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="pass" id="your_pass" placeholder="Password"/>
-                        </div>
+                            <input type="password" name="pass" id="your_pass" placeholder="Password" />
+                            <span class="error-message"></span>
+                          </div>
                         <div class="form-group">
                             <%
                             if(typeof message !=='undefined')
@@ -54,6 +56,75 @@
                             <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
                         </div>
                     </form>
+                    <script>
+                        // Get the login form element
+const loginForm = document.getElementById('login-form');
+
+// Add event listener for form submission
+loginForm.addEventListener('submit', (e) => {
+  // Prevent the default form submission
+  e.preventDefault();
+
+  // Perform form validation
+  if (validateLoginForm()) {
+    // If the form is valid, submit the form
+    loginForm.submit();
+  }
+});
+
+// Validate the login form
+function validateLoginForm() {
+  // Get the form inputs
+  const emailInput = document.getElementById('your_name');
+  const passwordInput = document.getElementById('your_pass');
+
+  // Reset the error messages
+  resetErrorMessages();
+
+  // Validate the email field
+  if (emailInput.value.trim() === '') {
+    displayError('Email is required');
+    return false;
+  } else if (!isValidEmail(emailInput.value.trim())) {
+    displayError('Please enter a valid email address');
+    return false;
+  }
+
+  // Validate the password field
+  if (passwordInput.value.trim() === '') {
+    displayError('Password is required');
+    return false;
+  }
+
+  return true;
+}
+
+// Reset the error messages
+function resetErrorMessages() {
+  const errorMessages = document.getElementsByClassName('error-message');
+  for (let i = 0; i < errorMessages.length; i++) {
+    errorMessages[i].textContent = '';
+  }
+}
+
+// Display the error message using SweetAlert
+function displayError(errorMessage) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Validation Error',
+    text: errorMessage,
+  });
+}
+
+// Validate email format using regular expression
+function isValidEmail(email) {
+  // Regular expression pattern for email validation
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
+                    </script>
+                    
                     <div class="social-login">
                         <span class="social-label">Or login with</span>
                         <ul class="socials">
@@ -70,6 +141,8 @@
 </div>
 
 <!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <script src="static/js/main.js"></script>
 </body>

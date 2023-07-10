@@ -6,7 +6,7 @@ const argon2=require('argon2')
 const loadAdminlogin=async(req,res)=>{
     try {
       
-    res.render('login')
+    res.render('login',{message:"please login"})
     } catch (error) {
         console.log(error.message);
     }
@@ -33,7 +33,7 @@ const verifyAdminlogin=async(req,res)=>{
                     res.redirect('/dash')
                 }
                 else{
-                    res.render('login')
+                    res.render('login',{message:"make sure all details are correct"})
                 }
             }
             else{
