@@ -24,10 +24,14 @@ const loadCategorypage=async(req,res)=>{
     const Categoryname=req.body.name
     const Categorydescription=req.body.description
     const Categoryimage=req.file
-    const lowerCategoryName = Category.find({cat_name:Categoryname})
+    console.log("========================",Categoryname);
+    // const lowerCategoryName = Category.find({cat_name:Categoryname})
+    
     try {
-        if(!lowerCategoryName){
-        const categoryExist = await Category.findOne({ category: lowerCategoryName });
+      
+        // if(!lowerCategoryName){
+        //     console.log("===============================================");
+        const categoryExist = await Category.findOne({ category: Categoryname });
         console.log(categoryExist)
         if (!categoryExist) {
             const category = new Category({
@@ -45,11 +49,11 @@ const loadCategorypage=async(req,res)=>{
             req.session.categoryExist = true;
             res.render("addcategorie",{er:"Category name already exists"});
         }
-    }
-    else{
-        req.session.categoryExist = true;
-        res.render("addcategorie",{er:"Category name already exists"});
-    }
+    // }
+    // else{
+    //     req.session.categoryExist = true;
+    //     res.render("addcategorie",{er:"Category name already exists"});
+    // }
         
     } catch (error) {
         console.log(error.message);

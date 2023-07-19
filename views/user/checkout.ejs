@@ -31,6 +31,8 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="static/usr/assets/css/responsive.css">
 
+	
+
 </head>
 <body>
 	
@@ -163,18 +165,17 @@
 						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 						      <div class="card-body">
 						        <div class="billing-address-form">
-						        	<form action="index.html">
+									<form action="/place_order" method="post">						        	
 						        		<p><input type="text" placeholder="Name" value="<%=datas.name%>" readonly></p>
 						        		<p><input type="email" placeholder="Email" value="<%=datas.email%>" readonly></p>
-						        		<p><input type="text" placeholder="Address" value="<%=datas.address%>"></p>
-						        		<p><input type="tel" placeholder="Phone" value="<%=datas.number%>"></p>
-						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
-						        	</form>
-						        </div>
+						        		<p><input type="tel" placeholder="Phone" value="<%=datas.number%>" readonly></p>
+						        		<p><textarea name="text_message" id="bill" cols="30" rows="10" placeholder="Say Something" ></textarea></p>
+						        	
+						        </div>       
 						      </div>
 						    </div>
 						  </div>
-						  <!-- <div class="card single-accordion">
+						  <div class="card single-accordion">
 						    <div class="card-header" id="headingTwo">
 						      <h5 class="mb-0">
 						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -185,11 +186,47 @@
 						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						      <div class="card-body">
 						        <div class="shipping-address-form">
-						        	<p>Your shipping address form is here.</p>
+						        	
+
+									<div class="container-fluid">
+										<div class="row">
+										  <% let z=1 %>
+										  <% datas.address.forEach(x => { %>
+										  <div class="col-md-4">
+											<div class="card" style="width: 18rem;">
+											  <div class="card-body">
+												<div class="form-check">
+												  <input class="form-check-input" type="radio" value="<%=x._id%>" name="address_order" id="address<%=z%>">
+												  <label class="form-check-label" for="address<%=z%>">
+													Address <%=z%>
+												  </label>
+												</div>
+												<h5 class="card-title"><%=x.type%></h5>
+												<p class="card-text"><%=x.houseName%></p>
+												<p class="card-text"><%=x.vilage%></p>
+												<p class="card-text"><%=x.landmark%></p>
+												<p class="card-text"><%=x.pincode%></p>
+												<p class="card-text"><%=x.city%></p> 
+												<p class="card-text"><%=x.district%></p>
+												<p class="card-text"><%=x.state%></p>
+												<p class="card-text"><%=x.country%></p>
+											  </div>
+											</div>
+										  </div>
+										  <% z++ %>
+										  <% }) %>
+										</div>
+									  </div>
+									  
+
+
+
+
+
 						        </div>
 						      </div>
 						    </div>
-						  </div> -->
+						  </div>
 						  <div class="card single-accordion">
 							<div class="card-header" id="headingThree">
 							  <h5 class="mb-0">
@@ -201,7 +238,7 @@
 							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 							  <div class="card-body">
 								<div class="card-details">
-								  <form>
+								  
 									<div class="form-group">
 									  <div class="form-check">
 										<input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked>
@@ -216,14 +253,14 @@
 										</label>
 									  </div>
 									  <div class="form-check">
-										<input class="form-check-input" type="radio" name="Cash-on-delivery" id="Cash-on-delivery" value="Cash on delivery">
+										<input class="form-check-input" type="radio" name="paymentMethod" id="Cash-on-delivery" value="Cash on delivery">
 										<label class="form-check-label" for="Cash on delivery">
 										  Cash on delivery
 										</label>
 									  </div>
 									  <!-- Add more payment methods as needed -->
 									</div>
-								  </form>
+								
 								</div>
 							  </div>
 							</div>
@@ -264,7 +301,7 @@
 								<tr class="total">
 									<td>Total</td>
 									<!-- <td> <input type="text" value="<%=total%>" id="total-input" readonly></td> -->
-									<td> <input type="text" value="<%=total%>" readonly></td>
+									<td> <input type="text" name="total" value="<%=total%>" readonly></td>
 									
 								</tr>
 							</tbody>
@@ -286,7 +323,8 @@ const totalInput = document.getElementById('total-input');
 totalInput.value = total;
 
 						</script>
-						<a href="#" class="boxed-btn">Place Order</a>
+						<input type="submit" value="Place Order" class="boxed-btn">
+						<!-- <a href="#" class="">Place Order</a> -->
 					</div>
 				</div>
 			</div>
@@ -294,6 +332,8 @@ totalInput.value = total;
 	</div>
 	<!-- end check out section -->
 
+
+</form>
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
 		<div class="container">

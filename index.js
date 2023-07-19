@@ -18,14 +18,14 @@ const store = new MongoDBStore({
 app.use('/static',express.static(path.join(__dirname,'public')))
 
 app.use(session({
-    secret: uuidv4(),//crypto
-    // secret: 'uuidv4()',//crypto
+    // secret: uuidv4(),//crypto // OLD
+    secret: 'uuidv4()',//crypto
     saveUninitialized: false,
     cookie: {
       maxAge: 600000000,
     },
-    resave: false,
-    // store,
+    resave: false, // OLD
+    store, // NEW
   }));
 
 const User_routes=require('./routes/userRoutes')

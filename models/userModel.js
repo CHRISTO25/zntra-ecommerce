@@ -33,14 +33,37 @@ const userSchema=new mongoose.Schema({
         type:String,
         default:false
     },
-    address:{
-      type:String,
-      default:"type addres"
-    },
-    address_2:{
-      type:String,
-      default:"type address"
-    }
+    address:[
+        {
+           type:{
+               type:String,
+           },
+           houseName:{
+               type:String,
+           },
+           village:{
+               type:String,
+           },
+           landmark:{
+               type:String
+           },
+           pincode:{
+               type:Number,
+           },
+           city:{
+               type:String,
+           },
+           district:{
+               type:String,
+           },
+           state:{
+               type:String,
+           },
+           country:{
+               type:String
+           }
+       }
+     ]
 })
 
 module.exports=mongoose.model('User',userSchema)

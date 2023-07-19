@@ -19,6 +19,7 @@ admin_routes.use(bodyparser.urlencoded({extended:true}))
  const categoriescontroller=require('../controllers/categoryController')
  const productController=require('../controllers/productController')
  const couponController=require('../controllers/couponController')
+ const orderController=require('../controllers/OrderController')
 //==========================admin login================================
 
  admin_routes.get('/admin',adminController.loadAdminlogin)
@@ -55,6 +56,10 @@ admin_routes.get('/add_coupons',couponController.load_addCoupon)
 admin_routes.post('/Coupon_add',couponController.Save_Coupon)
 
 
+//==========================orders=======================================
+
+admin_routes.get('/order_view_admin',orderController.view_order_task)
+admin_routes.get('/view_user_order',orderController.Order_setup)
 
  module.exports=admin_routes
 

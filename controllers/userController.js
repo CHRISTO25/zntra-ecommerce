@@ -407,6 +407,94 @@ try {
 }
 }
 
+
+const load_add_address= async(req,res)=>{
+  try {
+    const userId = req.session.user_id; 
+    const addressData = {
+      type:req.body.name,
+      houseName: req.body.hname,
+      village:req.body.vname,
+      landmark: req.body.lname,
+      pincode: req.body.pin,
+      city:req.body.cname,
+      district:req.body.dname,
+      state:req.body.sname,
+      country:req.body.country
+    }
+
+    // Find the user by userId
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Add the new address to the user's address array
+    user.address.push(addressData);
+
+    // Save the updated user object
+    await user.save();
+    
+   res.redirect('/profile')
+
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+const show_address=async(req,res)=>{
+  try {
+    res.render('add_address')
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+
+
+const delete_address = async (req, res) => {
+  try {
+    const userId = req.session.user_id; // Assuming you have the user ID as a query parameter
+    const addressId = req.query.id; // Assuming you have the address ID as a query parameter
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Find the index of the address in the user's address array
+    const addressIndex = user.address.findIndex(
+      (address) => address._id.toString() === addressId.toString()
+    );
+
+    if (addressIndex === -1) {
+      return res.status(404).json({ message: 'Address not found' });
+    }
+
+    // Remove the address from the user's address array
+    user.address.splice(addressIndex, 1);
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({ message: 'Address deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const anyPage =async (req,res)=>{
+  try {
+    res.redirect('/home')
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 module.exports={loadSignin,
                 loadSignup,
                 verifyLogin,
@@ -425,4 +513,9 @@ module.exports={loadSignin,
                 verify_otp_forgot,
                 Password_updating,
                 load_new_password,
-                 save_new_password}
+                save_new_password,
+                load_add_address,
+                show_address,
+                delete_address,
+                anyPage
+                }

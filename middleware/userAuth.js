@@ -25,7 +25,7 @@ const isLogout = async (req, res, next) => {
         } else {
            res.render('signin')
         }
-        next()
+        // next()
     } catch (error) {
         console.log(error.message);
     }

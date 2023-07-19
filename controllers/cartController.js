@@ -2,6 +2,7 @@ const Category = require('../models/categoriesModel')
 const User = require('../models/userModel')
 const Product = require('../models/productModel')
 const Cart=require('../models/cartModel');
+const mongoose = require('mongoose');
 
 
 const load_addtocart = async (req, res) => {
@@ -9,7 +10,7 @@ const load_addtocart = async (req, res) => {
     const userData = req.session.cartUser;
     // const productId = req.query.id;
    
-
+                          
 
     let prodId = req.query.id
     let userId = userData._id;
@@ -58,7 +59,7 @@ const load_Cart_view_user = async (req, res) => {
   ]);
 
   // Access product details and quantity
-  const filteredData = userCart.filter(item => item.user_id.toString() === id);
+  const filteredData = userCart.filter(item => item.user_id.toString() === id.toString());
   const cartItems = filteredData.map(cartItem => ({
     
     details: cartItem.product_details,
@@ -66,6 +67,7 @@ const load_Cart_view_user = async (req, res) => {
     
   }));
 
+  
   console.log(`id: ${id}`)
   console.log("Cart Items:", cartItems);
 
@@ -125,7 +127,7 @@ const loadcheckout_page=async (req,res)=>{
   ]);
 
   // Access product details and quantity
-  const filteredData = userCart.filter(item => item.user_id.toString() === id);
+  const filteredData = userCart.filter(item => item.user_id.toString() === id.toString());
   const cartItems = filteredData.map(cartItem => ({
     
     details: cartItem.product_details,

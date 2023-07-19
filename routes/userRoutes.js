@@ -17,6 +17,7 @@ user_routes.use(bodyparser.urlencoded({extended:true}))
 
  const userController=require('../controllers/userController')
  const cartController=require('../controllers/cartController')
+ const orderController=require('../controllers/OrderController')
  
 //------------------------signin---------------------------
  user_routes.get('/',user_auth.isLogout,userController.loadSignin)
@@ -53,6 +54,12 @@ user_routes.use(bodyparser.urlencoded({extended:true}))
 
  user_routes.get('/profile',user_auth.blockCheck,user_auth.isLogin,userController.load_profile)
  user_routes.post('/upload-image',store.single('image'),userController.load_upload_image)
+
+ //----------------------------Address---------------------------------------------------------
+
+ user_routes.post('/add_address',userController.load_add_address)
+ user_routes.get('/show_address',userController.show_address)
+ user_routes.get('/delete_adress',userController.delete_address)
  
 //------------------------------Cart-----------------------------------------------------------
 
@@ -64,5 +71,15 @@ user_routes.get('/delete_from_cart',cartController.load_remove_from_cart)
 //-----------------------------checkout-----------------------------------------------------------
 
 user_routes.get('/loadcheckout',cartController.loadcheckout_page)
+user_routes.post('/place_order',orderController.place_order)
+
+//-----------------------------order page-----------------------------------------------------------
+
+user_routes.get('/view_order_page',orderController.load_order_view_page)
+
+//-----------------------------any page------------------------------------------------------------
+// user_routes.get('/*',userController.anyPage)
+
+
 
  module.exports=user_routes

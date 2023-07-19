@@ -228,9 +228,27 @@
 							  </table>
 							  
 							  <div class="cart-buttons">
-								<a href="/loadcheckout" id="checkout-btn" class="boxed-btn black">Check Out</a>
+								<a href="/loadcheckout?full_total=" id="checkout-btn" class="boxed-btn black">Check Out</a>
 							  </div>
 							  
+							  <script>
+								// Get the total input element
+								var totalInput = document.getElementById("total-input");
+							  
+								// Get the checkout button element
+								var checkoutBtn = document.getElementById("checkout-btn");
+							  
+								// Add an event listener to update the href when the "Check Out" button is clicked
+								checkoutBtn.addEventListener("click", function() {
+								  // Get the value from the total input field
+								  var totalValue = totalInput.value;
+							  
+								  // Update the href attribute of the checkout button with the value from total-input
+								  checkoutBtn.href = "/loadcheckout?full_total=" + encodeURIComponent(totalValue);
+								});
+							  </script>
+							  
+							 
 							  <div class="coupon-section">
 								<h3>Apply Coupon</h3>
 								<div class="coupon-form-wrap">
@@ -295,7 +313,7 @@
 								// Get the cart element
 								const cart = document.querySelector('.cart-table');
 							  
-								// Add event listeners to the increment and decrement buttons
+								// Add event listeners to the increment and decrement buttons.0
 								cart.addEventListener('click', (event) => {
 									return;
 								  const target = event.target;
@@ -419,9 +437,6 @@
 	  calculateSubtotal();
 	});
 	
-	
-	
-		
 	
 							  </script>
 						

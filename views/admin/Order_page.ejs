@@ -5,7 +5,7 @@
 <!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
 <head>
     <meta charset="utf-8">
-    <title>Evara Dashboard</title>
+    <title>zntra Dashboard</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="static/admin/static/admin/assets/imgs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/icons/logo.png">
     <!-- Template CSS -->
     <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
@@ -24,7 +24,7 @@
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
             <a href="/dash" class="brand-wrap">
-                <img src="static/admin/static/admin/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+                <img src="static/admin/assets/imgs/icons/logo.png" class="logo" alt="Evara Dashboard">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
@@ -32,7 +32,7 @@
         </div>
         <nav>
             <ul class="menu-aside">
-                <li class="menu-item active">
+                <li class="menu-item has-submenu">
                     <a class="menu-link" href="/dash"> <i class="icon material-icons md-home"></i>
                         <span class="text">Dashboard</span>
                     </a>
@@ -42,7 +42,6 @@
                         <span class="text">Categories</span>
                     </a>
                     <div class="submenu">
-
                         <a href="/categories">View</a>
                         <a href="/categoriesAdd">Add</a>
                     </div>
@@ -56,8 +55,8 @@
                         <a href="/addusers">Add</a>
                     </div>
                 </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/view_products"> <i class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Products</span>
                     </a>
                     <div class="submenu">
@@ -66,27 +65,7 @@
                         
                     </div>
                 </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="/view_coupons"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Coupons</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/add_coupons">Add coupons</a>
-                        <a href="/view_coupons">View coupons</a>
-                        
-                    </div>
-                </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="/order_view_admin"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Orders</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/order_view_admin">Order_management</a>
-                        <!-- <a href="/view_coupons">View coupons</a> -->
-                        
-                    </div>
-                </li>
-               
+              
             <br>
             <br>
         </nav>
@@ -125,14 +104,14 @@
                     <li class="dropdown nav-item">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
-                            <a class="dropdown-item text-brand" href="#"><img src="static/admin/static/admin/assets/imgs/theme/flag-us.png" alt="English">English</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/static/admin/assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/static/admin/assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/static/admin/assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                            <a class="dropdown-item text-brand" href="#"><img src="static/admin/assets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
                         </div>
                     </li>
                     <li class="dropdown nav-item">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="static/admin/static/admin/assets/imgs/people/avatar2.jpg" alt="User"></a>
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="static/admin/assets/imgs/people/avatar2.jpg" alt="User"></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
                             <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
                             <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
@@ -147,9 +126,95 @@
             </div>
         </header>
 
-       
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Products List</h2>
+                    <p style="color: green;"><%=er%></p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-light rounded font-md">Export</a>
+                    <a href="#" class="btn btn-light rounded  font-md">Import</a>
+                    <a href="/addproduct" class="btn btn-primary btn-sm rounded">Add Products</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <header class="card-header"> 
+                </header> <!-- card-header end// -->
+                <div class="table-responsive">
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="40%">IMAGE/NAME</th>
+                                <th width="20%">NUMBER</th>
+                                <th width="20%">EMAIL</th>
+                                <th width="20%">LANDMARK</th>
+                                <th width="20%">PAYMENT</th>
+                                <th width="20%">STATUS</th>
+                                <th width="20%">EDIT</th>
+                                <th width="20%">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(x=>{%>
+                            <tr>
+                                <td>
+                                    <a class="itemside" href="#">
+                                        <div class="left">
+                                            <img src="static/uploads/<%=x.product_details.image%>" width="40" height="40" class="img-xs" alt="Item">
+                                        </div>
+                                        <div class="info"><%=x.product_details.name%></div>
+                                    </a>
+                                </td>
+                                <td> <%=x.product_details.number%> </td>
+                                <td> <%=x.product_details.email%> </td>
+                                <td ><%=x.shipping_address.landmark %> </td>
+                                <td ><%=x.payment_meathod %> </td>
+                                <td> 
+                                      <!-- <%if(x.product_verified==true){%>
+                                        <a href="/active_disable?id=<%=x._id%>" style=" border: none;
+                                        border-radius: 5px;
+                                        color: white;
+                                        cursor: pointer;
+                                        font-size: 14px;
+                                        padding: 8px 12px;
+                                       background-color: red;">DISABLE</a>
+                                        <%}else{%>
+                                            <a href="/active_disable?id=<%=x._id%>" style=" border: none;
+                                            border-radius: 5px;
+                                            color: white;
+                                            cursor: pointer;
+                                            font-size: 14px;
+                                            padding: 8px 12px;
+                                           background-color: green;">ACTIVE</a>
+                                            <%}%>      -->
+                                </td>
+                                <td> <a href="/editProduct?id=<%=x._id %>" style=" border: none;
+                                    border-radius: 5px;
+                                    color: white;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    padding: 8px 12px;
+                                   background-color: green;">cancel</a></td>
+                                    <td> <a href="/view_user_order?id=<%=x._id%>" style=" border: none;
+                                        border-radius: 5px;
+                                        color: white;
+                                        cursor: pointer;
+                                        font-size: 14px;
+                                        padding: 8px 12px;
+                                       background-color: red;">view</a></td>
+                               
+                            </tr>
+                            <%})%>  
+                        </tbody>
+                    </table>
+            </div>
+            </div>
+        </section>
+          
         
-        <footer class="main-footer font-xs">
+        <footer class="main-footer font-xs " style="position:initial !important;">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
                     <script>
