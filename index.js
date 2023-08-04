@@ -10,16 +10,15 @@ const { v4: uuidv4 } = require('uuid')
 const config = require('./config/config')
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const store = new MongoDBStore({
-  uri: 'mongodb+srv://zntra5453:zntra54532020@cluster0.dnyjgp6.mongodb.net/?retryWrites=true&w=majority',
-  collection: 'sessions'
-});
+// const store = new MongoDBStore({
+//   uri: 'mongodb+srv://zntra5453:zntra54532020@cluster0.dnyjgp6.mongodb.net/?retryWrites=true&w=majority',
+//   collection: 'sessions'
+// });
 
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(session({
-  // secret: uuidv4(),//crypto // OLD
-  secret: 'uuidv4()',//crypto
+  secret: uuidv4(),//crypto // OL
   saveUninitialized: false,
   cookie: {
     maxAge: 600000000,
@@ -36,7 +35,7 @@ app.use(admin_routes)
 
 
 app.listen(config.PORT, () => {
-  console.log("click http://localhost:5453");
+  console.log("server running" ,config.PORT);
 })
 
 
