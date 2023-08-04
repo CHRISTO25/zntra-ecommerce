@@ -24,7 +24,7 @@ app.use(session({
     maxAge: 600000000,
   },
   resave: false, // OLD
-  store, // NEW
+ 
 }));
 
 const User_routes = require('./routes/userRoutes')
