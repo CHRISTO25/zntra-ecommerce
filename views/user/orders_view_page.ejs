@@ -7,7 +7,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Cart</title>
+	<title>zntra</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="static/usr/assets/img/favicon.png">
@@ -36,7 +36,7 @@
             background-size: cover;
             font-family: 'Lato', sans-serif;
             color: rgba(116, 116, 116, 0.667);
-            background: linear-gradient(140deg , #fff , 50% , #e66129);    
+            background: linear-gradient(140deg , #fff , 50% , #f9f9f9);    
 
         }
         .container-fluid {
@@ -94,6 +94,10 @@
             background-color: #AB47BC !important;
         }
 
+		.progress-bar1 {
+            background-color: #fc0000 !important;
+        }
+
 
         .progress {
             height: 5px !important;
@@ -111,7 +115,7 @@
         }
 
         .card-footer {
-            background-color: #08c017;
+            background-color: #08c017 !important;
             color: #fff;
         }
 
@@ -139,7 +143,7 @@
         @media (max-width: 700px) {
 
             h2 {
-                color: rgb(219, 95, 13);
+                color: rgb(244, 243, 243);
                 font-size: 17px;
             }
 
@@ -158,92 +162,23 @@
             border-right: 1px solid rgb(226, 206, 226)
         }
  </style>
+ <script type="text/javascript">
+	function preventBack() {
+		window.history.forward(); 
+	}
+	  
+	setTimeout("preventBack()", 0);
+	  
+	window.onunload = function () { null };
+</script>
 </head>
 <body>
 	
 	<!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
-	
-	<!-- header -->
-	<div class="top-header-area" id="sticker">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 text-center">
-					<div class="main-menu-wrap">
-						<!-- logo -->
-						<div class="site-logo">
-							<a href="index.html">
-								<img src="static/usr/assets/img/logo1.png" alt="">
-							</a>
-						</div>
-						<!-- logo -->
-
-						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li class="current-list-item"><a href="/home">Home</a>
-									<ul class="sub-menu">
-										<!-- <li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li> -->
-									</ul>
-								</li>
-								<li><a href="about.html">About</a></li>
-							
-								<li><a href="news.html">News</a>
-									<ul class="sub-menu">
-										<li><a href="news.html">News</a></li>
-										<li><a href="single-news.html">Single News</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="shop.html">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
-									</ul>
-								</li>
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end header -->
+    <%-include('nav')-%>
 
 	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%-include('search_page')-%>
 	<!-- end search arewa -->
 	
 	<!-- breadcrumb-section -->
@@ -261,14 +196,13 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	
-
+     
     <div class="container-fluid my-5  d-flex  justify-content-center">
         <div class="card card-1">
             <div class="card-header bg-white">
                 <div class="media flex-sm-row flex-column-reverse justify-content-between  ">
                     <div class="col my-auto"> <h4 class="mb-0">Thanks for your Order,<span class="change-color"><%=user%></span> </h4> </div>
-                    <div class="col-auto text-center  my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3"  src="https://i.imgur.com/7q7gIzR.png" width="115" height="115"> <p class="mb-4 pt-0 Glasses">Glasses For Everyone</p>  </div>
+                    <div class="col-auto text-center  my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3"  src="static/images/bag.png" width="115" height="115"> <p class="mb-4 pt-0 Glasses">zntra </p>  </div>
                 </div>
             </div>
             <div class="card-body">
@@ -278,35 +212,93 @@
                 </div>
 
 				<% let y = 0 %>
-				<% data.forEach(x => { %>
+				<%for(let i=data.length-1;i>=0;i--){%>
+				
                 <div class="row">
                     <div class="col">
                         <div class="card card-2">
                             <div class="card-body">
                                 <div class="media">
-                                    <div class="sq align-self-center "> <img class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="static/uploads/<%=x.details.product_image[0]%>" width="135" height="135" /> </div>
+                                    <div class="sq align-self-center "> <img class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="static/uploads/<%=data[i].details.product_image[0]%>" width="135" height="135" /> </div>
                                     <div class="media-body my-auto text-right">
                                         <div class="row  my-auto flex-column flex-md-row">
-                                            <div class="col my-auto"> <h6 class="mb-0"><%=x.details.product_name%></h6>  </div>
-                                            <div class=" my-auto" style="color: black;">Amount : <%=x.details.product_price%></div>
-                                            <div class="col my-auto" style="color: black;"> Qty :<%=x.quantity%></div>
-                                            <div class="col my-auto"><h6 class="mb-0">&#8377;<%=x.details.product_price * x.quantity %></h6></div>
-											<% if(x.status== "requested"){%>
+                                            <div class="col my-auto"> <h6 class="mb-0"><%=data[i].details.product_name%></h6>  </div>
+                                            <div class=" my-auto" style="color: black;">Amount : <%=data[i].details.product_price%></div>
+                                            <div class="col my-auto" style="color: black;"> Qty :<%=data[i].quantity%></div>
+                                            <div class="col my-auto"><h6 class="mb-0">&#8377;<%=data[i].details.product_price * data[i].quantity %></h6></div>
+											<% if(data[i].status== "requested"){%>
 											<div class="col my-auto"> <button style="background-color: red; color: white; border-radius: 10px;">requested</button> </div>
 											<%}%>
+											<% if(data[i].status== "approved"){%>
+											
+												
+												<div class="col my-auto"><a href="/cancel?pid=<%=data[i].details._id%>&id=<%=data[i].ids%>&qn=<%=data[i].quantity%>&wh=1"><button style="background-color: red; color: white; border-radius: 10px;">Cancel</button></a></div>
+												<%}%>
+												<% if(data[i].status== "delivery"){%>
+													<div class="col my-auto"> <button style="background-color: rgb(33, 212, 84); color: white; border-radius: 10px;">shipped</button> </div>
+													<%}%>
+													<% if(data[i].status== "delivered"){%>
+														<div class="col my-auto"> <button style="background-color: rgb(44, 59, 225); color: white; border-radius: 10px;">delivered</button> </div>
+														<%}%>
+														<!-- <% if(data[i].status== "canceled"){%>
+															<div class="col my-auto"> <button style="background-color: rgb(44, 59, 225); color: white; border-radius: 10px;"> closed</button> </div>
+															<%}%> -->
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="my-3 ">
                                 <div class="row">
-                                    <div class="col-md-3 mb-3"> <button style="background-color: rgb(239, 88, 7); color: white; border-radius: 10px;">Track</button> </div>
+									<% if(data[i].status== "requested"){%>
+                                    <div class="col-md-3 mb-3"> <button style="background-color: rgb(239, 88, 7); color: white; border-radius: 10px;">waiting</button> </div>
+									<%}%>
+									<% if(data[i].status== "approved"){%>
+										<div class="col-md-3 mb-3"> <button style="background-color: rgb(55, 181, 13); color: white; border-radius: 10px;">tracking</button> </div>
+										<%}%>
+										<% if(data[i].status== "delivery"){%>
+											<div class="col-md-3 mb-3"> <button style="background-color: rgb(55, 181, 13); color: white; border-radius: 10px;">tracking</button> </div>
+											<%}%>
+											
                                     <div class="col mt-auto">
-                                        <div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 50%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
-                                        <div class="media row justify-content-between ">
-                                            <div class="col-auto text-right"><span> <small  class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
-                                            <div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle active"></i></span></div>
+										<% if(data[i].status== "requested"){%>
+                                        <div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 0%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+										<div class="media row justify-content-between ">
+                                            <div class="col-auto text-right"><span> <small  class="text-right mr-sm-2"></small> <i class="fa fa-circle "></i> </span></div>
+                                            <div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle "></i></span></div>
                                             <div class="col-auto flex-col-auto"><small  class="text-right mr-sm-2">Delivered</small><span> <i  class="fa fa-circle "></i></span></div>
                                         </div>
+										<%}%>
+										<% if(data[i].status== "approved"){%>
+											<div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 10%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+											<div class="media row justify-content-between ">
+												<div class="col-auto text-right"><span> <small  class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
+												<div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle "></i></span></div>
+												<div class="col-auto flex-col-auto"><small  class="text-right mr-sm-2">Delivered</small><span> <i  class="fa fa-circle "></i></span></div>
+											</div>
+											<%}%>
+											<% if(data[i].status== "delivery"){%>
+												<div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 70%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+												<div class="media row justify-content-between ">
+													<div class="col-auto text-right"><span> <small  class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
+													<div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle active"></i></span></div>
+													<div class="col-auto flex-col-auto"><small  class="text-right mr-sm-2">Delivered</small><span> <i  class="fa fa-circle "></i></span></div>
+												</div>
+												<%}%>
+												<% if(data[i].status== "delivered"){%>
+													<div class="progress my-auto"> <div class="progress-bar progress-bar  rounded" style="width: 100%" role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+													<div class="media row justify-content-between ">
+														<div class="col-auto text-right"><span> <small  class="text-right mr-sm-2"></small> <i class="fa fa-circle active"></i> </span></div>
+														<div class="flex-col"> <span> <small class="text-right mr-sm-2">Out for delivary</small><i class="fa fa-circle active"></i></span></div>
+														<div class="col-auto flex-col-auto"><small  class="text-right mr-sm-2">Delivered</small><span> <i  class="fa fa-circle active "></i></span></div>
+													</div>
+													<%}%>
+
+													<% if(data[i].status== "canceled"){%>
+														<div class="progress my-auto" style="color: red !important;" > <div  class="progress-bar1 progress-bar1  rounded" style="width: 100%"   role="progressbar" aria-valuenow="25" aria-valuemin="0"  aria-valuemax="100"></div> </div>
+														<div class="media row justify-content-between ">
+															<h5 style="color: red;">Item cancelled</h5>
+														</div>
+														<%}%>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -314,34 +306,12 @@
                     </div>
                 </div>
                 
-				<% y++ } ) %>
+				<% y++ }  %>
 
-                <div class="row mt-4">
-                    <div class="col">
-                        <div class="row justify-content-between">
-                            <div class="col-auto"><p class="mb-1 text-dark"><b>Order Details</b></p></div>
-                            <div class="flex-sm-col text-right col"> <p class="mb-1"><b>Total</b></p> </div>
-                            <div class="flex-sm-col col-auto"> <p class="mb-1">&#8377;<%=datas.total_amount%></p> </div>
-                        </div>
-                        <!-- <div class="row justify-content-between">
-                            <div class="flex-sm-col text-right col"><p class="mb-1"> <b>Discount</b></p> </div>
-                            <div class="flex-sm-col col-auto"><p class="mb-1">&#8377;150</p></div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="flex-sm-col text-right col"><p class="mb-1"><b>GST 18%</b></p></div>
-                            <div class="flex-sm-col col-auto"><p class="mb-1">843</p></div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="flex-sm-col text-right col"><p class="mb-1"><b>Delivery Charges</b></p></div>
-                            <div class="flex-sm-col col-auto"><p class="mb-1">Free</p></div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="row invoice ">
-                    <div class="col"><br><p class="mb-1"></p><br><br><p class="mb-1">Invoice Date :<%=datas.date.toLocaleDateString()%></p><br><p class="mb-1"> Invoice Number :<%=datas._id%></p></div>
-                </div>
+                
+                
             </div>
-            <div class="card-footer">
+            <!-- <div class="card-footer">
                 <div class="jumbotron-fluid">
                     <div class="row justify-content-between ">
                         <div class="col-sm-auto col-auto my-auto"><img class="img-fluid my-auto align-self-center " src="https://i.imgur.com/7q7gIzR.png" width="115" height="115"></div>
@@ -354,7 +324,7 @@
                         <div class="col-auto "><small class="text-white">GSTN:268FD07EXX </small> </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 	
@@ -388,22 +358,23 @@
 	<!-- end logo carousel -->
 
 	<!-- footer -->
+	<!-- footer -->
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p>That shamed them well enough. A knight mounted, helmetless, and rode to join the others. A pair of sellswords followed. Then more. The King’s Gate shuddered again. In a few moments the size of Tyrion’s command had doubled. He had them trapped. If I fight, they must do the same, or they are less than dwarfs</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
+							<li>i am zntra</li>
+							<li>zntra.com</li>
+							<li>7306218158</li>
 						</ul>
 					</div>
 				</div>
@@ -411,11 +382,11 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Shop</a></li>
+							<li><a href="#">News</a></li>
+							<li><a href="https://instagram.com/zntra_5453?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -423,7 +394,7 @@
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">Subscribe</h2>
 						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
+						<form action="#">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>
@@ -439,8 +410,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
+					<p>since &copy; 2001 - <a href="https://instagram.com/zntra_5453?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D">zntra</a>,  All Rights Reserved.<br>
+						Distributed By - <a href="https://instagram.com/zntra_5453?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D">Themewagon</a>
 					</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">

@@ -71,8 +71,43 @@ const blockCheck = async (req, res, next) => {
 //    }
 //  }
 
+ 
+
+const admin_isLogout = async (req, res, next) => {
+    try {
+
+        if (req.session.admin_verify==1) {
+            res.redirect('/dash')
+        } else {
+           res.render('login',{message:"please login"})
+        }
+        // next()
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+const admin_isLogin = async (req, res, next) => {
+    try {
+
+        if (req.session.admin_verify !=1) {
+            res.redirect('/admin')
+        } else {
+            next()
+        }
+
+
+    } catch (error) {
+        console.log(error.message);
+    }
+
+}
+
 module.exports = {
     isLogin,
     isLogout,
     blockCheck,
+    admin_isLogout,
+    admin_isLogin
 }

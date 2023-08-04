@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <title>zntra Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/icons/logo.png">
+    <!-- Template CSS -->
+    <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.css">
+    <!-- Add this inside the <head> tag of your HTML -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+
+</head>
+
+<body>
+    <%-include('nav')-%>
+    <main class="main-wrap">
+        
+        <section class="content-main">
+            <form action="/insert_banner" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 class="content-title">Add New Product</h2>
+                            <div>
+                                <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to
+                                    draft</button>
+                                <button class="btn btn-md rounded font-sm hover-up" type="submit">Save</button>
+                                
+                                
+                                  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Basic</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Banner Name</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="product_name"
+                                        name="name" required>
+                                </div>
+                               
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Media</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-upload">
+                                    <img id="image-1" src="static/admin/assets/imgs/theme/upload.svg" alt="">
+                                    <input class="form-control" type="file" name="image" id="image-input-1"
+                                        onchange="previewImage(event, 'image-1', 'image-input-1')">
+                                </div>
+                              
+                            </div>
+                        </div>
+
+                        <script src="https://cdn.jsdelivr.net/npm/cropperjs"></script>
+                        <script>
+                            const createCropper = (imageEl, onCrop) => {
+                                return new Cropper(imageEl, {
+                                    aspectRatio: 1,
+                                    viewMode: 1,
+                                    dragMode: 'none',
+                                    guides: false,
+                                    center: false,
+                                    autoCropArea: 1,
+                                    movable: false,
+                                    rotatable: false,
+                                    scalable: false,
+                                    zoomable: false,
+                                    crop: onCrop,
+                                });
+                            };
+                            function previewImage(event, imageElId, imageInputId) {
+                                const input = event.target;
+                                const imageEl = document.getElementById(imageElId);
+                                const imageInput = document.getElementById(imageInputId);
+
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        imageEl.src = e.target.result;
+
+                                        //   // Initialize Cropper.js after the image is loaded
+                                        //   var cropper = new Cropper(image, {
+                                        //     aspectRatio: 1, // Set the aspect ratio for cropping (e.g., 1:1 for a square)
+                                        //     viewMode: 1, // Set the view mode (0: free, 1: restricted, 2: proportionally constrained)
+                                        //     crop: function(event) {
+                                        //       // Get the cropped data (e.g., cropped image coordinates, width, height)
+                                        //       var croppedData = cropper.getData();
+                                        //       // Use the cropped data as needed (e.g., save to a hidden input field or send to the server)
+                                        //       console.log(croppedData);
+                                        //     }
+                                        //   });
+
+                                        const cropper = createCropper(imageEl, (e) => {
+                                            cropper.getCroppedCanvas().toBlob((blob) => {
+                                                if (blob !== null) {
+                                                    console.log(blob);
+                                                    const imageFile = new File([blob], imageElId, {type: 'image/png'});
+                                                    const dataTransfer = new DataTransfer();
+                                                    dataTransfer.items.add(imageFile);
+                                                    imageInput.files = dataTransfer.files;
+                                                }
+                                            }, 'image/png');
+
+                                        });
+                                    };
+
+                                    // cropper.getCroppedCanvas().toBlob((blob) => {
+                                    //     if(blob !== null) {
+                                    //         console.log(blob);
+                                    //     }
+                                    // }, 'image/png');
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                        </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </section>
+
+
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>
+
+    <script src="static/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="static/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="static/admin/assets/js/vendors/select2.min.js"></script>
+    <script src="static/admin/assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="static/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="static/admin/assets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="static/admin/assets/js/main.js" type="text/javascript"></script>
+    <script src="static/admin/assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+
+</html>

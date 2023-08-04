@@ -6,13 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>zntra</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
 
     <!-- Main css -->
     <link rel="stylesheet" href="static/css/style.css">
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward(); 
+        }
+          
+        setTimeout("preventBack()", 0);
+          
+        window.onunload = function () { null };
+    </script>
+
+
 </head>
 <body>
 
@@ -38,39 +50,61 @@
                         <div class="form-group">
                             <div>Time left = <span id="timer"></span></div>
                         </div>
+                        <script src="path/to/sweetalert2.min.js"></script>
                         <script>
                             let timerOn = true;
+                            
+                            function timer(remaining) {
+                              var m = Math.floor(remaining / 60);
+                              var s = remaining % 60;
+                            
+                              m = m < 10 ? '0' + m : m;
+                              s = s < 10 ? '0' + s : s;
+                              document.getElementById('timer').innerHTML = m + ':' + s;
+                              remaining -= 1;
+                            
+                              if (remaining >= 0 && timerOn) {
+                                setTimeout(function () {
+                                  timer(remaining);
+                                }, 1000);
+                                return;
+                              }
+                            
+                              if (!timerOn) {
+                                // Do validate stuff here
+                                return;
+                              }
 
-function timer(remaining) {
-var m = Math.floor(remaining / 60);
-var s = remaining % 60;
-
-m = m < 10 ? '0' + m : m;
-s = s < 10 ? '0' + s : s;
-document.getElementById('timer').innerHTML = m + ':' + s;
-remaining -= 1;
-
-if(remaining >= 0 && timerOn) {
-setTimeout(function() {
-timer(remaining);
-}, 6000);
-return;
-}
-
-if(!timerOn) {
-// Do validate stuff here
-return;
-}
-
-// Do timeout stuff here
-alert('Timeout for otp');
-}
-
-timer(120);
-                        </script>
+                            
+                              // Do timeout stuff here
+                              location.reload();
+                              
+                              // AJAX call to /resend_otp when the timer reaches zero
+                              fetch('/resend_otp')
+                                .then(function (response) {
+                                  if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                  }
+                                  return response.json(); // Assuming the response is JSON
+                                })
+                                .then(function (data) {
+                                  // Handle the response from the route if needed
+                                  console.log(data);
+                                })
+                                .catch(function (error) {
+                                  // Handle any errors that occurred during the fetch
+                                  console.error('Fetch error:', error);
+                                });
+                            
+                            }
+                            
+                            timer(120);
+                            </script>
+                            
                       
                         <div class="form-group form-button">
                             <input type="submit" name="otp" id="signin" class="form-submit" value="Verify"/>
+                            <a href="/resend_otp" id="signin" class="form-submit">ReSend</a>
                         </div>
                     </form>
                     <div class="social-login">
@@ -89,6 +123,7 @@ timer(120);
 </div>
 
 <!-- JS -->
+<script src="path/to/sweetalert2.min.js"></script>
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <script src="static/js/main.js"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
