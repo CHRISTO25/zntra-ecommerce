@@ -40,5 +40,29 @@ const Save_Coupon=async(req,res)=>{
     }
 }
 
+const load_coupon_page =async(req,res)=>{
+    try {
+
+        const coupons = await Coupon.find()
+        
+
+        res.render('view_coupons',{er:"coupons",data:coupons})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const delete_coupon_sucess = async (req,res)=> {
+    try {
+        const id = req.query.id
+          await Coupon.deleteOne({_id:id });
+        res.redirect('/view_coupons')
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports={load_addCoupon,
-                 Save_Coupon}
+                 Save_Coupon,
+                load_coupon_page,
+                delete_coupon_sucess}

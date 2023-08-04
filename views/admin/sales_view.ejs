@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>zntra Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/icons/logo.png">
+    <!-- Template CSS -->
+    <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <%-include('nav')-%>
+    <main class="main-wrap">
+        
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Products List</h2>
+                    <p style="color: green;"><%=er%></p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-light rounded font-md" id="pdfBtn">PDF</a>
+                    <script>
+                        document.getElementById("pdfBtn").addEventListener("click", function () {
+                          // Get the table element
+                          const table = document.querySelector("table");
+                      
+                          // Set the default width and height of the PDF page
+                          const pdfWidth = 210;
+                          const pdfHeight = 297;
+                      
+                          // Create a new jsPDF instance
+                          const doc = new jspdf.jsPDF({
+                            orientation: "p",
+                            unit: "mm",
+                            format: "a4",
+                          });
+                      
+                          // Use html2canvas to convert the table to an image
+                          html2canvas(table).then((canvas) => {
+                            const imgData = canvas.toDataURL("image/jpeg", 1.0);
+                            const imgProps = doc.getImageProperties(imgData);
+                      
+                            // Calculate the aspect ratio to fit the image into the PDF page
+                            const imgWidth = pdfWidth;
+                            const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                      
+                            // Add the image to the PDF
+                            doc.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+                      
+                            // Save the PDF with a colored background
+                            doc.save("products.pdf");
+                          });
+                        });
+                      </script>
+                      
+                    <a href="#" class="btn btn-light rounded font-md" id="exportBtn">Export</a>
+                    <script>
+                        document.getElementById("exportBtn").addEventListener("click", function() {
+                          // Get the table
+                          const table = document.querySelector("table");
+                      
+                          // Create a new Workbook
+                          const wb = XLSX.utils.table_to_book(table);
+                      
+                          // Generate a blob from the Workbook
+                          const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+                      
+                          // Convert the array buffer to a Blob
+                          const blob = new Blob([wbout], { type: "application/octet-stream" });
+                      
+                          // Create a temporary anchor element to download the file
+                          const a = document.createElement("a");
+                          const url = URL.createObjectURL(blob);
+                          a.href = url;
+                          a.download = "products.xlsx";
+                          document.body.appendChild(a);
+                      
+                          // Trigger the click event to download the file
+                          a.click();
+                      
+                          // Cleanup
+                          setTimeout(function() {
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(url);
+                          }, 0);
+                        });
+                      </script>
+                      
+                    <a href="/addproduct" class="btn btn-primary btn-sm rounded">Add Products</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <header class="card-header"> 
+                </header> <!-- card-header end// -->
+                <div class="table-responsive">
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="40%">IMAGE/NAME</th>
+                                <th width="20%">NAME</th>
+                                <th width="20%">EMAIL</th>
+                                <th width="20%">LANDMARK</th>
+                                <th width="20%">PAYMENT</th>
+                                <th width="20%">AMOUNT</th>
+                                <th width="20%">STATUS</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(x=>{%>
+                            <tr>
+                                <td>
+                                    <a class="itemside" href="#">
+                                        <div class="left">
+                                            <img src="static/uploads/<%=x.details.product_image[0]%>" width="40" height="40" class="img-xs" alt="Item">
+                                        </div>
+                                        <div class="info"><%=x.details.product_name%></div>
+                                    </a>
+                                </td>
+                                <td> <%=x.user.username%> </td>
+                                <td> <%=x.user.email%> </td>
+                                <td ><%=x.shipping_address.landmark %> </td>
+                                <td ><%=x.payment %> </td>
+                                <td ><%=x.total_amount %> </td>
+                                 <%if(x.status=="delivered" ||  x.method == 'Net Banking' ){%>
+                                <td> <a href="/editProduct?id=<%=x._id %>" style=" border: none;
+                                    border-radius: 5px;
+                                    color: white;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    padding: 8px 12px;
+                                   background-color: green;">recieved</a>
+                                   </td>
+                                   <%}%>
+                                   <%if(x.status!="delivered" &&  x.method == 'Cash on delivery'){%>
+                                    <td> <a href="/editProduct?id=<%=x._id %>" style=" border: none;
+                                        border-radius: 5px;
+                                        color: white;
+                                        cursor: pointer;
+                                        font-size: 14px;
+                                        padding: 8px 12px;
+                                       background-color: rgb(205, 18, 18);">pending</a>
+                                       </td>
+                                       <%}%>
+                            </tr>
+                            <%})%>  
+                        </tbody>
+                    </table>
+            </div>
+            </div>
+        </section>
+          
+        
+        <footer class="main-footer font-xs " style="position:initial !important;">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx-style/0.8.14/xlsx.full.min.js"></script>
+
+    <script src="static/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="static/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="static/admin/assets/js/vendors/select2.min.js"></script>
+    <script src="static/admin/assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="static/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="static/admin/assets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="static/admin/assets/js/main.js" type="text/javascript"></script>
+    <script src="static/admin/assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+</html>

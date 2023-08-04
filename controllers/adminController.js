@@ -1,5 +1,9 @@
 
 const User = require('../models/userModel')
+const Order=require('../models/orderModel')
+const Product=require('../models/productModel')
+const Category=require('../models/categoriesModel')
+
 const argon2=require('argon2')
 
 
@@ -25,11 +29,12 @@ const verifyAdminlogin=async(req,res)=>{
             const passwordMatch=await argon2.verify(userPass,password)
             if(passwordMatch)
             {
-              req.session.user = true;
-              req.session.user_id = userData[0]._id;
-              req.session.cartUser = userData[0];
+            //   req.session.user = true;
+            //   req.session.user_id = userData[0]._id;
+            //   req.session.cartUser = userData[0];
                 if(userData[0].admin==true)
                 {
+                    req.session.admin_verify = 1
                     res.redirect('/dash')
                 }
                 else{
@@ -51,7 +56,13 @@ const verifyAdminlogin=async(req,res)=>{
 
  const  loadDash=async(req,res)=>{
     try {
-         res.render('dash')
+
+        const usr = await User.find()
+        const prd = await Product.find()
+        const ordr= await Order.find()
+        const ctgry =await Category.find()
+        
+         res.render('dash',{allu:usr.length,allp:prd.length,allo:ordr.length,allc:ctgry.length})
     } catch (error) {
         console.log(error.message);
     }
@@ -98,10 +109,21 @@ const verifyAdminlogin=async(req,res)=>{
     }
  }
 
+ const admin_Logout = async (req, res) => {
+    try {
+        req.session.admin_verify=null
+     
+      res.redirect('/admin')
+  
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
 module.exports={loadAdminlogin,
                 verifyAdminlogin,
                 loadDash,
                 loadUsers,
-                userBlk_unblk
+                userBlk_unblk,
+                admin_Logout
                 }

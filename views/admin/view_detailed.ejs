@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+
 <head>
     <meta charset="utf-8">
     <title>zntra Dashboard</title>
@@ -20,189 +21,167 @@
 </head>
 
 <body>
-    <div class="screen-overlay"></div>
-    <aside class="navbar-aside" id="offcanvas_aside">
-        <div class="aside-top">
-            <a href="/dash" class="brand-wrap">
-                <img src="static/admin/assets/imgs/icons/logo.png" class="logo" alt="Evara Dashboard">
-            </a>
-            <div>
-                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
-            </div>
-        </div>
-        <nav>
-            <ul class="menu-aside">
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="/dash"> <i class="icon material-icons md-home"></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Categories</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/categories">View</a>
-                        <a href="/categoriesAdd">Add</a>
-                    </div>
-                </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-person"></i>
-                        <span class="text">Users</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/users_view">View</a>
-                        <a href="/addusers">Add</a>
-                    </div>
-                </li>
-                <li class="menu-item active">
-                    <a class="menu-link" href="/view_products"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Products</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/addproduct">Product Add</a>
-                        <a href="/view_products">View Products</a>
-                        
-                    </div>
-                </li>
-              
-            <br>
-            <br>
-        </nav>
-    </aside>
+    <%-include('nav')-%>
     <main class="main-wrap">
-        <header class="main-header navbar">
-            <div class="col-search">
-                <form class="searchform">
-                    <div class="input-group">
-                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
-                        <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i></button>
-                    </div>
-                    <datalist id="search_terms">
-                        <option value="Products">
-                        <option value="New orders">
-                        <option value="Apple iphone">
-                        <option value="Ahmed Hassan">
-                    </datalist>
-                </form>
-            </div>
-            <div class="col-nav">
-                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link btn-icon" href="#">
-                            <i class="material-icons md-notifications animation-shake"></i>
-                            <span class="badge rounded-pill">3</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
-                            <a class="dropdown-item text-brand" href="#"><img src="static/admin/assets/imgs/theme/flag-us.png" alt="English">English</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
-                            <a class="dropdown-item" href="#"><img src="static/admin/assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
-                        </div>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="static/admin/assets/imgs/people/avatar2.jpg" alt="User"></a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
-                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
-                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
-                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
-                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
-                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#"><i class="material-icons md-exit_to_app"></i>Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </header>
-
+       
         <section class="content-main">
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Products List</h2>
-                    <p style="color: green;"><%=er%></p>
+                    <p style="color: green;">
+                        <%=er%>
+                    </p>
                 </div>
                 <div>
                     <a href="#" class="btn btn-light rounded font-md">Export</a>
                     <a href="#" class="btn btn-light rounded  font-md">Import</a>
-                    <a href="/addproduct" class="btn btn-primary btn-sm rounded">Add Products</a>
+                    <a href="/order_view_admin" class="btn btn-primary btn-sm rounded">view order</a>
                 </div>
             </div>
             <div class="card mb-4">
-                <header class="card-header"> 
+                <header class="card-header">
                 </header> <!-- card-header end// -->
                 <div class="table-responsive">
-                    
+
                     <table class="table">
                         <thead>
                             <tr>
                                 <th width="40%">IMAGE/NAME</th>
-                                <th width="20%">NUMBER</th>
-                                <th width="20%">EMAIL</th>
-                                <th width="20%">LANDMARK</th>
-                                <th width="20%">PAYMENT</th>
+                                <th width="20%">PRICE</th>
+                                <th width="20%">QUANTITY</th>
+                                <th width="20%">TOTAL</th>
+                                <th width="20%">TOTAL AMOUNT</th>
+
                                 <th width="20%">STATUS</th>
-                                <th width="20%">EDIT</th>
-                                <th width="20%">DELETE</th>
+                                <th width="20%">CNACEL</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% data.forEach(x=>{%>
-                            <tr>
-                                <td>
-                                    <a class="itemside" href="#">
-                                        <div class="left">
-                                            <img src="static/uploads/<%=x.details.product_image[0]%>" width="40" height="40" class="img-xs" alt="Item">
-                                        </div>
-                                        <div class="info"><%=x.details.product_name%></</div>
-                                    </a>
-                                </td>
-                                <td> <%=x.details.product_price%> </td>
-                                <td><%=x.quantity%> </td>
-                                <td ><%=x.details.product_price * x.quantity %></td>
-                                <td ><%=data.total_amount%></td>
-                                <td> 
-                               
-                                </td>
-                                <td> <a href="/editProduct?id=<%=x._id %>" style=" border: none;
+                                <tr>
+                                    <td>
+                                        <a class="itemside" href="#">
+                                            <div class="left">
+                                                <img src="static/uploads/<%=x.details.product_image[0]%>" width="40"
+                                                    height="40" class="img-xs" alt="Item">
+                                            </div>
+                                            <div class="info">
+                                                <%=x.details.product_name%>
+                                                    </< /div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%=x.details.product_price%>
+                                    </td>
+                                    <td>
+                                        <%=x.quantity%>
+                                    </td>
+                                    <td>
+                                        <%=x.details.product_category%>
+                                    </td>
+                                    <td>
+                                        <%=x.details.product_price * x.quantity %>
+                                    </td>
+                                    <% if(x.status !="canceled" && x.status !="delivered" ){%>
+                                        <td> <a href="/cancel?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>&wh=0" style=" border: none;
                                     border-radius: 5px;
                                     color: white;
                                     cursor: pointer;
                                     font-size: 14px;
                                     padding: 8px 12px;
-                                   background-color: green;">cancel</a></td>
-                                    <td> <a href="/view_user_order?id=<%=x._id%>" style=" border: none;
+                                   background-color: green;">CANCEL</a></td>
+                                        <%}%>
+
+                                            <% if(x.status=="canceled" ){%>
+                                                <td> <a href="#" style=" border: none;
                                         border-radius: 5px;
                                         color: white;
                                         cursor: pointer;
                                         font-size: 14px;
                                         padding: 8px 12px;
-                                       background-color: red;">view</a></td>
-                               
-                            </tr>
-                            <%})%>  
+                                       background-color: rgb(7, 169, 163);">closed</a></td>
+                                                <%}%>
+
+
+                                                    <% if(x.status=="requested" ){%>
+                                                        <td> <a href="/approve?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>"
+                                                                style=" border: none;
+                                        border-radius: 5px;
+                                        color: white;
+                                        cursor: pointer;
+                                        font-size: 14px;
+                                        padding: 8px 12px;
+                                       background-color: red;">Approve</a></td>
+                                                        <%}%>
+                                                            <% if(x.status=="approved" ){%>
+                                                                <td> <a href="/delivery?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                        style=" border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 8px 12px;
+       background-color: rgb(77, 195, 18);">delivery</a></td>
+                                                                <%}%>
+                                                                    <% if(x.status=="delivery" ){%>
+                                                                        <td> <a href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                                style=" border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 8px 12px;
+       background-color: rgb(18, 68, 195);">delivered</a></td>
+                                                                        <%}%>
+                                                                            <% if(x.status=="delivered" ){%>
+                                                                                <td> <a href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                                        style=" border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 8px 12px;
+       background-color: rgb(206, 220, 11);">completed</a></td>
+                                                                                <%}%>
+                                                                                    <% if(x.status=="canceled" ){%>
+                                                                                        <td> <a href="#" style=" border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 8px 12px;
+       background-color: rgb(11, 213, 220);">closed</a></td>
+                                                                                        <%}%>
+
+                                </tr>
+                                <%})%>
                         </tbody>
                     </table>
-            </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="height: 100px; width: 50%;" src="static/images/cash.png"
+                            alt="Card image cap">
+                        <div class="card-body">
+
+                            <p class="card-text">TOTAL AMOUNT</p>
+                            <h1>RS : <span style="color: red;">
+                                    <%=datas.total_amount%>
+                                </span></h1>
+                            <!-- <%=datas._id%> -->
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </section>
-          
-        
+
+
         <footer class="main-footer font-xs " style="position:initial !important;">
             <div class="row pb-30 pt-15">
                 <div class="col-sm-6">
                     <script>
-                    document.write(new Date().getFullYear())
+                        document.write(new Date().getFullYear())
                     </script> ©, Evara - HTML Ecommerce Template .
                 </div>
                 <div class="col-sm-6">
@@ -226,4 +205,5 @@
 
 
 <!-- Mirrored from wp.alithemes.com/html/evara/evara-backend//dash by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+
 </html>
