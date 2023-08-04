@@ -2066,18 +2066,9 @@ a.video-play-btn {
   margin-left: -45px;
 }
 
-.abt-bg {
-  background-image: url(../img/yup.png);
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
+/* .abt-bg {
+ 
+} */
 
 .abt-bg:after {
   position: absolute;
