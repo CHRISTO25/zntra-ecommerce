@@ -238,7 +238,7 @@ const Order_setup = async (req, res) => {
       status: cartItem.user_cart.products.find(product => product.product_id.toString() === cartItem.product_details._id.toString()).status
     }));
 
-    const user = req.session.cartUser.username;
+     const user = req.session.cartUser_username;
 
     console.log("------------------------------", cartItems, "----------------------------------------");
 
