@@ -135,7 +135,7 @@
 																				<input class="form-check-input"
 																					type="radio" value="<%=x._id%>"
 																					name="address_order"
-																					id="address<%=z%>">
+																					id="address<%=z%>" required>
 																				<label class="form-check-label"
 																					for="address<%=z%>">
 																					Address <%=z%>
@@ -230,14 +230,14 @@
 												</div> -->
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="payment"
-														id="paypal" value="Net Banking">
+														id="paypal" value="Net Banking" required>
 													<label class="form-check-label" for="paypal">
 														Net Banking
 													</label>
 												</div>
 												<div class="form-check">
 													<input class="form-check-input" type="radio" name="payment"
-														id="Cash-on-delivery" value="Cash on delivery">
+														id="Cash-on-delivery" value="Cash on delivery" required>
 													<label class="form-check-label" for="Cash on delivery">
 														Cash on delivery
 													</label>
@@ -752,6 +752,7 @@
 							<div class="col-lg-12">
 								<div class="row gx-3">
 									<div class="col-6  mb-3">
+										<input type="hidden" name="ch" value=0 >
 										<label class="form-label">type</label>
 										<input class="form-control" type="text" placeholder="Type here" name="name">
 									</div> <!-- col .// -->

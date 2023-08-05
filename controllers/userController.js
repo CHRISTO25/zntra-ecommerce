@@ -449,6 +449,7 @@ const save_new_password = async (req, res) => {
 
 const load_add_address = async (req, res) => {
   try {
+    const ch =req.body.ch
     const userId = req.session.user_id;
     const addressData = {
       type: req.body.name,
@@ -475,7 +476,13 @@ const load_add_address = async (req, res) => {
     // Save the updated user object
     await user.save();
 
-    res.redirect('/profile')
+   console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",ch);
+
+    if (ch==0) {
+        res.redirect('/load_cart')
+    } else {
+      res.redirect('/profile')
+    }
 
   } catch (error) {
     console.log(error.message);
@@ -519,7 +526,7 @@ const delete_address = async (req, res) => {
     // Save the updated user
     await user.save();
 
-    res.status(200).json({ message: 'Address deleted successfully' });
+    res.redirect('/profile')
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
