@@ -380,8 +380,7 @@ const verify_otp_forgot = async (req, res) => {
 
       res.render('password', { message: "change password" })
 
-      res.render('signin', { message: "something went wrong" })
-
+    
     } else {
       res.render('otp', { invalidOtp: "wrong OTP" })
     }
@@ -419,7 +418,7 @@ const save_new_password = async (req, res) => {
 
     const userPass = await user.password
     const passwordMatch = await argon2.verify(userPass, old)
-
+   
     if (passwordMatch) {
       await User.findByIdAndUpdate({ _id: id }, { $set: { password: pass } })
 
@@ -427,8 +426,11 @@ const save_new_password = async (req, res) => {
       console.log("details ====== ", id);
       console.log(user_data);
       const users = user_data[0]
+     
+    
+      const cat= await Category.find()
       if (users) {
-        res.render('profile', { data: users, er: "profile loaded" })
+        res.render('profile', { data: users, er: "profile loaded",dataCat:cat })
       } else {
         res.render('profile', { data: user_data, er: "no details found" })
       }
