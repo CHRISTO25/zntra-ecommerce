@@ -18,10 +18,115 @@
     <link rel="shortcut icon" type="image/x-icon" href="static/admin/assets/imgs/icons/logo.png">
     <!-- Template CSS -->
     <link href="static/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 <body>
     <%-include('nav')-%>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="/dash" class="brand-wrap">
+                <img src="static/images/alogo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/dash"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Categories</span>
+                    </a>
+                    <div class="submenu">
+
+                        <a href="/categories">View</a>
+                        <a href="/categoriesAdd">Add</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Users</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/users_view">View</a>
+                        <a href="/addusers">Add</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/addproduct">Product Add</a>
+                        <a href="/view_products">View Products</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_coupons"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/add_coupons">Add coupons</a>
+                        <a href="/view_coupons">View coupons</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu active">
+                    <a class="menu-link" href="/order_view_admin"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/order_view_admin">Order_management</a>
+                        <!-- <a href="/view_coupons">View coupons</a> -->
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_sales"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">sales Report</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/view_sales">sales</a>
+                        <!-- <a href="/view_coupons">View coupons</a> -->
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_banner"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Banner</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/add_banner">Add Banner</a>
+                        <a href="/view_banner">View Banner</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/admin_logout"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin_logout">Logout</a>
+                       
+                        
+                    </div>
+                </li>
+            <br>
+            <br>
+        </nav>
+    </aside>
     <main class="main-wrap">
        
         <section class="content-main">
@@ -83,74 +188,70 @@
                                         <%=x.details.product_price * x.quantity %>
                                     </td>
                                     <% if(x.status !="canceled" && x.status !="delivered" ){%>
-                                        <td> <a href="/cancel?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>&wh=0" style=" border: none;
-                                    border-radius: 5px;
-                                    color: white;
-                                    cursor: pointer;
-                                    font-size: 14px;
-                                    padding: 8px 12px;
-                                   background-color: green;">CANCEL</a></td>
+                                        <td> <a href="#" class="item-action" data-href="/cancel?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>&wh=0" 
+                                            style="border: none; border-radius: 5px; color: white; cursor: pointer; font-size: 14px; padding: 8px 12px; background-color: green;" >CANCEL</a></td>
                                         <%}%>
 
                                             <% if(x.status=="canceled" ){%>
-                                                <td> <a href="#" style=" border: none;
-                                        border-radius: 5px;
-                                        color: white;
-                                        cursor: pointer;
-                                        font-size: 14px;
-                                        padding: 8px 12px;
-                                       background-color: rgb(7, 169, 163);">closed</a></td>
+                                                <td><a href="#" style="border: none;
+                                                    border-radius: 5px;
+                                                    color: white;
+                                                    cursor: pointer;
+                                                    font-size: 14px;
+                                                    padding: 8px 12px;
+                                                   background-color: rgb(11, 213, 220);"  >closed</a>
+                                            </td>
                                                 <%}%>
 
 
                                                     <% if(x.status=="requested" ){%>
-                                                        <td> <a href="/approve?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>"
+                                                        <td> <a href="#" class="item-action" data-href="/approve?pid=<%=x.details._id%>&id=<%=datas._id%>&qn=<%=x.quantity%>"
                                                                 style=" border: none;
                                         border-radius: 5px;
                                         color: white;
                                         cursor: pointer;
                                         font-size: 14px;
                                         padding: 8px 12px;
-                                       background-color: red;">Approve</a></td>
+                                       background-color: red;"  >Approve</a></td>
                                                         <%}%>
                                                             <% if(x.status=="approved" ){%>
-                                                                <td> <a href="/delivery?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                <td> <a href="#" class="item-action" data-href="/delivery?pid=<%=x.details._id%>&id=<%=datas._id%>"
                                                                         style=" border: none;
         border-radius: 5px;
         color: white;
         cursor: pointer;
         font-size: 14px;
         padding: 8px 12px;
-       background-color: rgb(77, 195, 18);">delivery</a></td>
+       background-color: rgb(77, 195, 18);"  >delivery</a></td>
                                                                 <%}%>
                                                                     <% if(x.status=="delivery" ){%>
-                                                                        <td> <a href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                        <td> <a href="#" class="item-action" data-href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>" 
                                                                                 style=" border: none;
         border-radius: 5px;
         color: white;
         cursor: pointer;
         font-size: 14px;
         padding: 8px 12px;
-       background-color: rgb(18, 68, 195);">delivered</a></td>
+       background-color: rgb(18, 68, 195);"  onclick="return myFunction('deliveredLink')" >delivered</a></td>
                                                                         <%}%>
                                                                             <% if(x.status=="delivered" ){%>
-                                                                                <td> <a href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>"
+                                                                                <td> <a href="#" class="item-action" data-href="/delivered?pid=<%=x.details._id%>&id=<%=datas._id%>"
                                                                                         style=" border: none;
         border-radius: 5px;
         color: white;
         cursor: pointer;
         font-size: 14px;
         padding: 8px 12px;
-       background-color: rgb(206, 220, 11);">completed</a></td>
+       background-color: rgb(206, 220, 11);"  >completed</a></td>
                                                                                 <%}%>
                                                                                     <% if(x.status=="canceled" ){%>
-                                                                                        <td> <a href="#" style=" border: none;
+                                                                                        <td> <a href="#" class="item-action" data-href="#" style=" border: none;
         border-radius: 5px;
         color: white;
         cursor: pointer;
         font-size: 14px;
         padding: 8px 12px;
-       background-color: rgb(11, 213, 220);">closed</a></td>
+       background-color: rgb(11, 213, 220);"  >closed</a></td>
                                                                                         <%}%>
 
                                 </tr>
@@ -170,8 +271,35 @@
                             <!-- <%=datas._id%> -->
                         </div>
                     </div>
-
-
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const itemActions = document.querySelectorAll(".item-action");
+                    
+                            itemActions.forEach(action => {
+                                action.addEventListener("click", function (event) {
+                                    event.preventDefault();
+                    
+                                    const link = this.getAttribute("data-href");
+                    
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: "You want to update this item!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = link; // Proceed with the link's href
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    </script>
+                    
+                   
                 </div>
             </div>
         </section>

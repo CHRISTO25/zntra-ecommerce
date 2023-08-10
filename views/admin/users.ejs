@@ -28,6 +28,106 @@
 
 <body>
     <%-include('nav')-%>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="/dash" class="brand-wrap">
+                <img src="static/images/alogo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/dash"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Categories</span>
+                    </a>
+                    <div class="submenu">
+
+                        <a href="/categories">View</a>
+                        <a href="/categoriesAdd">Add</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu active">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Users</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/users_view">View</a>
+                        <a href="/addusers">Add</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/addproduct">Product Add</a>
+                        <a href="/view_products">View Products</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_coupons"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/add_coupons">Add coupons</a>
+                        <a href="/view_coupons">View coupons</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/order_view_admin"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/order_view_admin">Order_management</a>
+                        <!-- <a href="/view_coupons">View coupons</a> -->
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_sales"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">sales Report</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/view_sales">sales</a>
+                        <!-- <a href="/view_coupons">View coupons</a> -->
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/view_banner"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Banner</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/add_banner">Add Banner</a>
+                        <a href="/view_banner">View Banner</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/admin_logout"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin_logout">Logout</a>
+                       
+                        
+                    </div>
+                </li>
+            <br>
+            <br>
+        </nav>
+    </aside>
     <main class="main-wrap">
        
         <section class="content-main">

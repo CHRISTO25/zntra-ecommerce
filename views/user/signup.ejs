@@ -13,6 +13,8 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script type="text/javascript">
       function preventBack() {
           window.history.forward(); 
@@ -22,6 +24,7 @@
         
       window.onunload = function () { null };
   </script>
+
 </head>
 <body>
 
@@ -36,125 +39,101 @@
                             <form method="POST" class="register-form" id="register-form">
                                 <div class="form-group">
                                   <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                  <input type="text" name="name" id="name" placeholder="Your Name" required />
+                                  <input type="text" name="name" id="name" placeholder="Your Name"  />
                                   <span class="error-message" id="name-error"></span>
                                 </div>
                                 <div class="form-group">
                                   <label for="user_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                  <input type="text" name="username" id="user_name" placeholder="User Name" required />
+                                  <input type="text" name="username" id="user_name" placeholder="User Name"  />
                                   <span class="error-message" id="username-error"></span>
                                 </div>
                                 <div class="form-group">
                                   <label for="number"><i class="zmdi zmdi-email"></i></label>
-                                  <input type="number" name="number" id="number" placeholder="Your Number" required />
+                                  <input type="number" name="number" id="number" placeholder="Your Number"  />
                                   <span class="error-message" id="number-error"></span>
                                 </div>
                                 <div class="form-group">
                                   <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                  <input type="email" name="email" id="email" placeholder="Your Email" required />
+                                  <input type="email" name="email" id="email" placeholder="Your Email"  />
                                   <span class="error-message" id="email-error"></span>
                                 </div>
                                 <div class="form-group">
                                   <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="password" name="pass" id="password" placeholder="Password" required />
+                                  <input type="password" name="pass" id="password" placeholder="Password"  />
                                   <span class="error-message" id="password-error"></span>
                                 </div>
                                 <div class="form-group">
                                   <label for="confirm_password"><i class="zmdi zmdi-lock-outline"></i></label>
-                                  <input type="password" name="re_pass" id="confirm_password" placeholder="Repeat your password" required />
+                                  <input type="password" name="re_pass" id="confirm_password" placeholder="Repeat your password"  />
                                   <span class="error-message" id="confirm-password-error"></span>
                                 </div>
                                 <div class="form-group form-button">
                                   <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
                                 </div>
                               </form>
-                              
                               <script>
-                                const form = document.getElementById('register-form');
-                              
-                                form.addEventListener('submit', function (e) {
-                                  e.preventDefault();
-                              
-                                  const nameInput = document.getElementById('name');
-                                  const usernameInput = document.getElementById('user_name');
-                                  const numberInput = document.getElementById('number');
-                                  const emailInput = document.getElementById('email');
-                                  const passwordInput = document.getElementById('password');
-                                  const confirmPasswordInput = document.getElementById('confirm_password');
-                              
-                                  const nameError = document.getElementById('name-error');
-                                  const usernameError = document.getElementById('username-error');
-                                  const numberError = document.getElementById('number-error');
-                                  const emailError = document.getElementById('email-error');
-                                  const passwordError = document.getElementById('password-error');
-                                  const confirmPasswordError = document.getElementById('confirm-password-error');
-                              
-                                  nameError.textContent = '';
-                                  usernameError.textContent = '';
-                                  numberError.textContent = '';
-                                  emailError.textContent = '';
-                                  passwordError.textContent = '';
-                                  confirmPasswordError.textContent = '';
-                              
-                                  let isValid = true;
-                              
-                                  if (nameInput.value.trim() === '') {
-                                    nameError.textContent = 'Name is required';
-                                    nameInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (usernameInput.value.trim() === '') {
-                                    usernameError.textContent = 'Username is required';
-                                    usernameInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (numberInput.value.trim() === '') {
-                                    numberError.textContent = 'Number is required';
-                                    numberInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (emailInput.value.trim() === '') {
-                                    emailError.textContent = 'Email is required';
-                                    emailInput.classList.add('error-input');
-                                    isValid = false;
-                                  } else if (!isValidEmail(emailInput.value)) {
-                                    emailError.textContent = 'Invalid email format';
-                                    emailInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (passwordInput.value.trim() === '') {
-                                    passwordError.textContent = 'Password is required';
-                                    passwordInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (confirmPasswordInput.value.trim() === '') {
-                                    confirmPasswordError.textContent = 'Confirm Password is required';
-                                    confirmPasswordInput.classList.add('error-input');
-                                    isValid = false;
-                                  } else if (passwordInput.value !== confirmPasswordInput.value) {
-                                    confirmPasswordError.textContent = 'Passwords do not match';
-                                    confirmPasswordInput.classList.add('error-input');
-                                    isValid = false;
-                                  }
-                              
-                                  if (isValid) {
-                                    // Form is valid, you can proceed with form submission or further processing
-                                    form.submit();
-                                  }
+                                document.addEventListener("DOMContentLoaded", function() {
+                                  const form = document.getElementById("register-form");
+                                
+                                  const showErrorAlert = (inputId, errorMessage) => {
+                                    Swal.fire("Error", errorMessage, "error");
+                                    const input = document.getElementById(inputId);
+                                    input.focus();
+                                  };
+                                
+                                  const validateInput = (inputId, validator, errorMessage) => {
+                                    const input = document.getElementById(inputId);
+                                    const value = input.value.trim();
+                                
+                                    if (!validator(value)) {
+                                      showErrorAlert(inputId, errorMessage);
+                                      return false;
+                                    }
+                                    return true;
+                                  };
+                                
+                                  const isPhoneNumberValid = (number) => {
+                                    return /^\d{10}$/.test(number);
+                                  };
+                                
+                                  const hasNoSpaces = (text) => {
+                                    return !/\s/.test(text);
+                                  };
+                                
+                                  const isPasswordValid = (password) => {
+                                    // At least 5 characters, one special character
+                                    const passwordRegex = /^(?=.*[!@#$%^&*])(.{5,})$/;
+                                    return passwordRegex.test(password);
+                                  };
+                                
+                                  form.addEventListener("submit", (event) => {
+                                    event.preventDefault();
+                                
+                                    const isNameValid = validateInput("name", (value) => value !== "", "Name is required.");
+                                    const isUsernameValid = validateInput("user_name", (value) => value !== "" && hasNoSpaces(value), "Username is required and must not contain spaces.");
+                                    const isNumberValid = validateInput("number", isPhoneNumberValid, "Number must be 10 digits.");
+                                    const isEmailValid = validateInput("email", (value) => value !== "", "Email is required.");
+                                    const isPasswordMatchValid = validateInput("confirm_password", (value) => value !== "" && value === document.getElementById("password").value, "Passwords do not match.");
+                                
+                                    let isPasswordEmpty = true;
+                                    if (document.getElementById("password").value.trim() !== "") {
+                                      isPasswordEmpty = false;
+                                    }
+                                
+                                    if (isNameValid && isUsernameValid && isNumberValid && isEmailValid && (isPasswordEmpty || isPasswordValid) && isPasswordMatchValid) {
+                                      // Proceed with form submission logic
+                                      form.submit();
+                                    }
+                                  });
                                 });
-                              
-                                // Helper function to validate email format
-                                function isValidEmail(email) {
-                                  // Use regular expression to validate email format
-                                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                                  return emailRegex.test(email);
-                                }
-                              </script>
+                                </script>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                               
                         </div>
                         <div class="signup-image">
